@@ -1,0 +1,1 @@
+<!-- view trenera  koji se poziva nakon registracije/logina -->
