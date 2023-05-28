@@ -61,6 +61,13 @@ class Register extends BaseController
             ]);
         }
         
+        if($user['tip']==1) 
+        {
+            $studentModel = new StudentModel();
+            $studentModel->insert([
+                'idkor' => $userModel->db->insertID(),
+            ]);
+        } 
         // uraditi za sve tipove korisnika
         // return view('register');
         // $this->session->set('korisnik', $user);
