@@ -18,32 +18,32 @@ $this->section('content');
             <h2 class="section-heading text-uppercase">Uloguj se</h2>
             
             <br>
-            <?php 
-            echo $error ?? "";
-            echo "<br>";
-            ?>
+            <?php $session = \Config\Services::session(); ?>
+            <?= $session->getFlashdata('msg') ?>
+            <?= $session->getFlashdata('errors') ?>
+            <br>
             <form action="<?=site_url("Login/login") ?>" method="post">
-                <label for="text" class="form-label" >Korisničko ime: </label>
-                <input type="text" class="form-control" name="username" value="">
+                <label for="text" class="form-label">Korisničko ime: </label>
+                <input type="text" class="form-control" name="username" 
+                    placeholder="Unesite svoje ime..." value="<?= old('username') ?>">
                 <br>
 
                 <label for="password" class="form-label" >Šifra: </label>
-                <input type="password" class="form-control" name="password" value="">
+                <input type="password" class="form-control" name="password" 
+                    placeholder="Unesite svoju šifru..."  value="<?= old('password') ?>">
                 <br>
 
-                <label for="" class="form-label" >Tip korisnika:</label>
-                <select class="form-control" name="user_type">
-                    <option value="">Izaberi tip naloga</option>
-                    <option value="1">rekreativac</option>
-                    <option value="2">učenik</option>
-                    <option value="3">trener</option>
-                    <option value="4">administrator</option>
+                <label for="user_type" class="form-label" >Tip korisnika:</label>
+                <select class="form-select" name="user_type" >
+                    <option selected disabled hidden value="">Izaberite...</option>
+                    <option value="0" <?= set_select('user_type', '0')?> >rekreativac</option>
+                    <option value="1" <?= set_select('user_type', '1')?> >učenik</option>
+                    <option value="2" <?= set_select('user_type', '2')?> >trener</option>
+                    <option value="3" <?= set_select('user_type', '3')?> >administrator</option>
                 </select>
                 <br>
 
                 <button type="submit" class="btn btn-primary">Uloguj se</button>
-
-
 
 
             </form>
