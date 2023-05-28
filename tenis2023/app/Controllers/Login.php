@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\UserModel;
 
+use function PHPUnit\Framework\countOf;
+
 class Login extends BaseController
 {
     public function index()
@@ -33,25 +35,27 @@ class Login extends BaseController
         ];
         // dohvatanje modela
         $userModel = new UserModel();
-        $user = $userModel->find($this->request->getVar('idkor'));
-        if ($user == null) {  // provera da li postoji korisnik kojeg smo zadali, NESTO NE RADI, DORADITI
+        $users = $userModel->where($user)->get()->getResult();
+        // var_dump($user[0]);
+        if ($users == null || count($users)==0) {  // provera da li postoji korisnik kojeg smo zadali, NESTO NE RADI, DORADITI
             // prihvata sve podatke iako mozda takvi korisnici ne postoje u bazi
             return redirect()->back()->withInput() // cuvaju se svi inputi koji su vec uneti
-                ->with('errors', $this->validator->listErrors('list'));
+                ->with('errors', "Korisnik ne postoji" );
         } 
         
+        $user = $users[0];
         $session = \Config\Services::session(); 
-        $user = $this->session->set('user', $user);
-        $user = $this->session->get('user', $user);
-        if ($session->has('user')) {
-            return redirect()->to('User');
-        }
 
-        //    if($user == 0) {
-        //    $this->session->set('member', $user);
-        //        return view('member');
-        //        return redirect()->to('User'); // DA LI JE POTREBNO NAPRAVITI MODEL ZA MEMBER, STUDENT, COACH, ADMIN?????
-        //    }
+        $this->session->set('user', $user);  // prvi user je sacuvan u sesiji, na to se odnosi
+        
+        if($user->tip == 0) {
+        
+            return redirect()->to('Member'); // DA LI JE POTREBNO NAPRAVITI MODEL ZA MEMBER, STUDENT, COACH, ADMIN?????
+        }
+        if($user->tip == 1) {
+        
+            return redirect()->to('Student');
+        }
         //    if($user == 1) {
         //    $this->session->set('student', $user);
         //        return view('student');
