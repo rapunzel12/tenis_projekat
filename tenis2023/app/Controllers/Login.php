@@ -46,30 +46,26 @@ class Login extends BaseController
         $user = $users[0];
         $session = \Config\Services::session(); 
 
-        $this->session->set('user', $user);  // prvi user je sacuvan u sesiji, na to se odnosi
+        $this->session->set('user', $user);  // prvi user je sacuvan u sesiji, na to se odnosi 'user'
         
         if($user->tip == 0) {
         
-            return redirect()->to('Member'); // DA LI JE POTREBNO NAPRAVITI MODEL ZA MEMBER, STUDENT, COACH, ADMIN?????
+            return redirect()->to('Member'); 
         }
         if($user->tip == 1) {
         
             return redirect()->to('Student');
         }
-        //    if($user == 1) {
-        //    $this->session->set('student', $user);
-        //        return view('student');
-        //    }
-        //    if($user == 2) {
-        //    $this->session->set('coach', $user);
-        //        return view('coach');
-        //    }
-        //   if($user == 3) {
-        //    $this->session->set('admin', $user);
-        //        return view('admin');
-        //    }
-        // return redirect()->to('User');
-        // MOZDA REDIRECT ???    return view('');
+
+        if($user->tip == 2) {
+        
+            return redirect()->to('Coach'); 
+        }
+        if($user->tip == 3) {
+        
+            return redirect()->to('Admin');
+        }
+        
     }
 
 }

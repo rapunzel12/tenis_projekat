@@ -2,11 +2,11 @@
 
 namespace App\Controllers;
 
-class Member extends User
+class Coach extends User
 {
     public function index()
     {
-        echo "Member";
+        echo "Coach";
         
     }
 

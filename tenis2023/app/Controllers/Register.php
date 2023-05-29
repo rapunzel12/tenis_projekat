@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\AdminModel;
+use App\Models\CoachModel;
+use App\Models\MemberModel;
 use App\Models\StudentModel;
 use App\Models\UserModel;
 
@@ -53,6 +56,15 @@ class Register extends BaseController
         ];
         $userModel = new UserModel();
         $userModel->insert($user);
+
+        if($user['tip']==0) 
+        {
+            $memberModel = new MemberModel();
+            $memberModel->insert([
+                'idkor' => $userModel->db->insertID(),
+            ]);
+        }
+
         if($user['tip']==1) 
         {
             $studentModel = new StudentModel();
@@ -61,35 +73,24 @@ class Register extends BaseController
             ]);
         }
         
-        if($user['tip']==1) 
+        if($user['tip']==2) 
         {
-            $studentModel = new StudentModel();
-            $studentModel->insert([
+            $coachModel = new CoachModel();
+            $coachModel->insert([
+                'idkor' => $userModel->db->insertID(),
+            ]);
+        } 
+
+        if($user['tip']==3) 
+        {
+            $adminModel = new AdminModel();
+            $adminModel->insert([
                 'idkor' => $userModel->db->insertID(),
             ]);
         } 
         // uraditi za sve tipove korisnika
-        // return view('register');
-        // $this->session->set('korisnik', $user);
         
-        //$this->session->set('user', $user);
-        
-        //if($user == 0) {
-        //    return view('member');
-        //}
-        //if($user == 1) {
-        //    return view('student');
-        //}
-        //if($user == 2) {
-        //    return view('coach');
-        //}
-        //if($user == 3) {
-        //    return view('admin');
-        //}
-        // return redirect()->to('User');
-
         return redirect()->to('Register/index')->with("msg", 'Success');
-        // mozda REDIRECT???? return view('');
     }
 
 
