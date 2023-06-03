@@ -19,19 +19,19 @@ class Login extends BaseController
     {
         // provere za login ako su polja prazna i prelazak na sledecu stranicu
         if (!$this->validate([
-            'username' =>'required|if_exist', // matches[korisnik.korime,korime,{$korime}]', // ne radi
-            'password' =>'required|if_exist', // matches[korisnik.pass] // ne radi
+            'username' =>'required|if_exist', 
+            'password' =>'required|if_exist', 
             'user_type' =>'required'
         ])) {
             return redirect()->back()->withInput() // cuvaju se svi inputi koji su vec uneti
                 ->with('errors', $this->validator->listErrors('list'));
         }
 
-        // podaci navedeni za svaki slucaj
         $user = [
             'korime' =>$this->request->getPost('username'),
             'pass' =>$this->request->getPost('password'),
-            'tip' =>$this->request->getPost('user_type')
+            'tip' =>$this->request->getPost('user_type'),
+            'status'=>'1'
         ];
         // dohvatanje modela
         $userModel = new UserModel();

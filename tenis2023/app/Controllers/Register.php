@@ -20,19 +20,21 @@ class Register extends BaseController
         if(!$this->validate([
             // KOJA JE FUNKCIJA TRIM AKO SAM USPESNO REGISTROVALA KORISNIKA SA SVIM BELINAMA 
             // OKO SVIH POLJA GDE JE POSTAVLJENA REC TRIM???
-            'name' =>'required', //|regex_match[/regex/]', // prvo slovo velikim slovom
-            'lastname' =>'required', //|regex_match[/regex/]', // prvo slovo velikim slovom
-            'username' =>'required|is_unique[korisnik.korime]',
+            'name' =>'required|min_length[3]|max_length[25]', //|regex_match[/regex/]', // prvo slovo velikim slovom
+            'lastname' =>'required|min_length[3]|max_length[35]', //|regex_match[/regex/]', // prvo slovo velikim slovom
+            'username' =>'required|is_unique[korisnik.korime]|min_length[3]|max_length[15]',
             // Koja je fora? prhihvata sve sifre bez obzira na to da li maju slova, 
             // bojeve i znake za interpunkciju
             'password' =>'required|alpha_numeric_punct|min_length[8]|max_length[15]', // alpha_numeric radi, ali ne ono sto sam ja zelela
-            'passconf' => 'trim|required|matches[password]', // ova provera radi
-            'email' =>'trim|required|valid_email',
-            'tel' =>'trim|required',
-
-            // ^(\d{10,11}|\d\S{10,11}|\d\s{10,13})$  // proba
-            // ("^\\+?(\\(\\d+\\)|\\d+/?)[\\d ]+$");
-            'user_type' =>'required'
+            'passconf' => 'required|matches[password]', // ova provera radi
+            'email' =>'required|valid_email',
+            'tel' =>'required|integer|max_length[15]',
+            'user_type' =>'required',
+            'poster' => [
+                'uploaded[poster]',
+                'max_size[poster,1024]',
+                'mime_in[poster,image/png,image/jpeg, image/jpg]'
+            ],
         ])){
             // ako validacija ne vrati tacno, redirektujemo se na istu stranicu sa vec unetim podacima
             return redirect()->back()->withInput() // cuvaju se svi inputi koji su vec uneti
@@ -50,12 +52,19 @@ class Register extends BaseController
             'email' =>$this->request->getPost('email'),
             'brtel' =>$this->request->getPost('tel'),
             'tip' =>$this->request->getPost('user_type'),
+            // 'status'=> $this->request->getPost('0') // ne upisuje status 
+            // 'status' => '0' // ne radi ni ovako
             // dodati status da je 0 = na cekanju, i posle to administrator dohvata te podatke
             // na ovaj nacin se upisuje u bazi 0, administartor mora da uradi update i da azurira to
             
         ];
+
         $userModel = new UserModel();
         $userModel->insert($user);
+
+        
+
+
 
         if($user['tip']==0) 
         {
@@ -88,7 +97,53 @@ class Register extends BaseController
                 'idkor' => $userModel->db->insertID(),
             ]);
         } 
-        // uraditi za sve tipove korisnika
+        // nakon upisivanja korisnika u bazu moram da uradi update i da dodam sliku koja ce autoinkrementom da dobije svoj naziv
+        $userModel = new UserModel();
+        $userId = $userModel->insert($user); // dohvatam dodeljeni Id useru te se sada slikama moze dodati odgovarajuci broj koji korespondira sa id-em
+
+        $poster = $this->request->getFile('poster');
+        $posterName = $userId. ".".$poster->getExtension();; // trebalo bi da se proveri koja je ekstenzija i da se konkatenira sa njom
+        $poster->move("../public/assets/img/users", $posterName, true);
+
+        $user = [
+            'tip' => 'user_type',
+            'poster'=> $posterName,
+        ];
+
+        $userModel->update($userId, $user);
+
+        
+        if($user['tip']==0) 
+        {
+            $memberModel = new MemberModel();
+            $memberModel->update([
+                'idkor' => $userModel->db,
+            ]);
+        }
+
+        if($user['tip']==1) 
+        {
+            $studentModel = new StudentModel();
+            $studentModel->update([
+                'idkor' => $userModel->db->insertID(),
+            ]);
+        }
+        
+        if($user['tip']==2) 
+        {
+            $coachModel = new CoachModel();
+            $coachModel->update([
+                'idkor' => $userModel->db->insertID(),
+            ]);
+        } 
+
+        if($user['tip']==3) 
+        {
+            $adminModel = new AdminModel();
+            $adminModel->update([
+                'idkor' => $userModel->db->insertID(),
+            ]);
+        } 
         
         return redirect()->to('Register/index')->with("msg", 'Success');
     }
