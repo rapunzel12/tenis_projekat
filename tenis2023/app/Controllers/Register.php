@@ -51,26 +51,27 @@ class Register extends BaseController
             'passconf' =>$this->request->getPost('passconf'),
             'email' =>$this->request->getPost('email'),
             'brtel' =>$this->request->getPost('tel'),
-            'tip' =>$this->request->getPost('user_type'),
-            // 'status'=> $this->request->getPost('0') // ne upisuje status 
-            // 'status' => '0' // ne radi ni ovako
+            'tip' =>((int)$this->request->getPost('user_type')),
+            'status' => '0' // ne radi ni ovako
             // dodati status da je 0 = na cekanju, i posle to administrator dohvata te podatke
             // na ovaj nacin se upisuje u bazi 0, administartor mora da uradi update i da azurira to
             
         ];
 
+        var_dump($user);
+        
         $userModel = new UserModel();
         $userModel->insert($user);
 
-        
-
+        $userId=$userModel->db->insertID();
+        // return;
 
 
         if($user['tip']==0) 
         {
             $memberModel = new MemberModel();
             $memberModel->insert([
-                'idkor' => $userModel->db->insertID(),
+                'idkor' => $userId,
             ]);
         }
 
@@ -78,7 +79,7 @@ class Register extends BaseController
         {
             $studentModel = new StudentModel();
             $studentModel->insert([
-                'idkor' => $userModel->db->insertID(),
+                'idkor' => $userId,
             ]);
         }
         
@@ -86,7 +87,7 @@ class Register extends BaseController
         {
             $coachModel = new CoachModel();
             $coachModel->insert([
-                'idkor' => $userModel->db->insertID(),
+                'idkor' => $userId,
             ]);
         } 
 
@@ -94,12 +95,12 @@ class Register extends BaseController
         {
             $adminModel = new AdminModel();
             $adminModel->insert([
-                'idkor' => $userModel->db->insertID(),
+                'idkor' => $userId,
             ]);
         } 
         // nakon upisivanja korisnika u bazu moram da uradi update i da dodam sliku koja ce autoinkrementom da dobije svoj naziv
-        $userModel = new UserModel();
-        $userId = $userModel->insert($user); // dohvatam dodeljeni Id useru te se sada slikama moze dodati odgovarajuci broj koji korespondira sa id-em
+        // $userModel = new UserModel();
+        // visak $userId = $userModel->insert($user); // dohvatam dodeljeni Id useru te se sada slikama moze dodati odgovarajuci broj koji korespondira sa id-em
 
         $poster = $this->request->getFile('poster');
         $posterName = $userId. ".".$poster->getExtension();; // trebalo bi da se proveri koja je ekstenzija i da se konkatenira sa njom
@@ -113,37 +114,7 @@ class Register extends BaseController
         $userModel->update($userId, $user);
 
         
-        if($user['tip']==0) 
-        {
-            $memberModel = new MemberModel();
-            $memberModel->update([
-                'idkor' => $userModel->db,
-            ]);
-        }
-
-        if($user['tip']==1) 
-        {
-            $studentModel = new StudentModel();
-            $studentModel->update([
-                'idkor' => $userModel->db->insertID(),
-            ]);
-        }
         
-        if($user['tip']==2) 
-        {
-            $coachModel = new CoachModel();
-            $coachModel->update([
-                'idkor' => $userModel->db->insertID(),
-            ]);
-        } 
-
-        if($user['tip']==3) 
-        {
-            $adminModel = new AdminModel();
-            $adminModel->update([
-                'idkor' => $userModel->db->insertID(),
-            ]);
-        } 
         
         return redirect()->to('Register/index')->with("msg", 'Success');
     }

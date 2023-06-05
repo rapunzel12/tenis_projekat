@@ -29,8 +29,7 @@ $this->section('content');
                             <th>E-mail</th>
                             <th>Broj telefona</th>
                             <th>Tip korisnika</th>
-                            <th>Opis korisnika</th>
-                            <th>Fotografija</th>
+                            <th>Opis korisnika</th> <!-- cist visak -->
                             <th>Status</th>
                             <th>Prihvaćen</th>
                             <th>Odbijen</th>
@@ -43,10 +42,10 @@ $this->section('content');
                                 <td><?= $user['ime'] ?></td>
                                 <td><?= $user['prezime'] ?></td>
                                 <td><?= $user['brtel'] ?></td>
-                                <td><?= $user['poster'] ?></td>
                                 <td><?= $user['email'] ?></td>
                                 <td><?= $user['tip'] ?></td>
                                 <td><?= $user['status'] ?></td>
+                                <td><?= anchor('Admin/naziv metodee/'.$user['idkor'], 'Prihvati')?><td>
                             </tr>
 
                         <?php
@@ -121,7 +120,7 @@ $this->section('content');
             </form>
         </div>
 
-
+        <button type="submit" class="btn btn-primary">Prikaz svih terena</button>
 
         <div class="col-sm-5">
             <br>
@@ -146,26 +145,7 @@ $this->section('content');
         </div>
     </div>
     
-    <div>
-        <?php 
-        if(isset($courts)){
-            if(sizeof($courts)==0){
-                echo "Nema rezultata pretrage";
-            } 
-            else {
-                $table = new CodeIgniter\View\Table();
-                $template = [
-                    'table_open' => '<table border="1" cellpadding="2" cellspacing="1" >'
-                ];
-                $table->setTemplate($template);
-                $table->setHeading('Tip podloge', 'Opis', 'Obriši');
-                echo $table->generate($courts);
-            }
-        }
-
-        ?>
-    </div>
-
+    
 </div>
 
     <?php

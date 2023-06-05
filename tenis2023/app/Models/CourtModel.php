@@ -16,14 +16,12 @@ class CourtModel extends Model
     protected $allowedFields = ['tippod', 'opis', 'poster_vertical'];
 
 
-    public function getCourts($court_type, $description) //$poster_vertical
+    public function getCourts($court_type) 
     {
         $builder = $this->builder();
        
-        $builder->where('opis', $description);
          if(isset($court_type))
             $builder->where('tippod', $court_type);
-        // $builder->where('poster_vertical', $poster_vertical);
             $builder->select('tippod, opis');
         return $builder->get()->getResultArray();
     }

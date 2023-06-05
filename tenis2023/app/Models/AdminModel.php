@@ -15,6 +15,7 @@ class AdminModel extends Model
 
     protected $allowedFields = ['opis','idkor'];
 
+    // trenutno je visak
     public function getRequests($name, $lastname, $username, $password, $email, $tel) // $poster
     {
         $builder = $this->builder();

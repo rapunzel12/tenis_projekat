@@ -26,8 +26,8 @@ class Admin extends User
             'email' => $this->request->getPost('email'),
             'brtel' => $this->request->getPost('tel'),
             'tip' => $this->request->getPost('user_type'),
-            'opis' => $this->request->getPost('description'),
             'status' => '0'
+            // ove kolone staviti u tabelu sa pristiglim zahtevima
             // dodati status da je 0 = na cekanju, i posle to administrator dohvata te podatke
             // na ovaj nacin se upisuje u bazi 0, administartor mora da uradi update i da azurira to
 
@@ -74,26 +74,13 @@ class Admin extends User
         $court = [
             'tippod' => $this->request->getPost('court_type'),
             'opis' => $this->request->getPost('court_description'),
-            // 'poster_vertical' =>$this->request->getPost('poster_vertical'),
-
-
         ];
 
-        $session = \Config\Services::session();
-
-        $this->session->set('court', $court);
-
-
-        $courtModel = new CourtModel();
-        $courtModel->insert($court);
-
-        if ($court['tippod'] == 'S' || $court['tippod'] == 'T' || $court['tippod'] == 'B') {
-            $model = new CourtModel();
-            $model->insert([
-                'idteren' => $model->db->insertID(),
-            ]);
+        if ($court['tippod'] != 'S' && $court['tippod'] != 'T' && $court['tippod'] != 'B') {
+            return redirect()->back()->withInput() // cuvaju se svi inputi koji su vec uneti
+            ->with('errors', "Pogresan tip terena");
         }
-
+        
         $courtModel = new CourtModel();
         $courtId = $courtModel->insert($court);
 
@@ -113,26 +100,12 @@ class Admin extends User
 
 
     // funkcija koja se odnosi na pregled terena kada se unese neki novi teren
-    public function showCourts()
+    public function showAllCourts()
     {
-        $court = [
-            'tippod' => $this->request->getPost('court_type'),
-            'opis' => $this->request->getPost('court_description'),
-            // 'poster_vertical' =>$this->request->getPost('poster_vertical'),
-        ];
-
         $courtModel = new CourtModel();
-        $courts = $courtModel->where($court)->get()->getResult();
+        $courts = $courtModel->get()->getResult();
         // var_dump($court[0]);
-        if ($courts == null || count($courts) == 0) {  // provera da li postoji zadati teren
-
-            return redirect()->back()->withInput()
-                ->with('errors', "Teren nije pronađen");
-        }
-
-        $court = $courts[0];
-
-        return redirect()->to('admin');
+        return view ('admin_show_courts', ['courts'=>$courts]);
     }
 
 
@@ -146,14 +119,11 @@ class Admin extends User
         }
         $courtModel =  new CourtModel();
         $courts = $courtModel->getCourts(
-
-            $this->request->getVar('description'),
             $this->request->getVar('court_type'),
-            // $this->request->getVar('poster_vertical'),
         );
-        echo $courts; // Array to string conversion
-        // var_dump($courts); // ne pretrazuje teren, ne daje mi object i sta je u njemu
-        return $this->showCourts(['courts' => $courts]);
+        // echo $courts; // Array to string conversion
+        // var_dump($courts); // sada radi
+        return view ('admin_show_courts', ['courts'=>$courts]);
         // return 'test'; // vratice rec 'test' ako skace na pretragu :)
     }
 }
