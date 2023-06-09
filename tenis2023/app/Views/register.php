@@ -20,7 +20,7 @@ $this->section('content');
             <?= $session->getFlashdata('msg') ?>
             <?= $session->getFlashdata('errors') ?>
             <br>
-            <form action="<?=site_url("Register/register") ?>" method="post" enctype="multipart/form-data">
+            <form action="<?=site_url("Guest/register") ?>" method="post" enctype="multipart/form-data">
 
                 <label for="text" class="form-label" >Ime: </label>
                 <input type="text" class="form-control" name="name" 
@@ -69,9 +69,7 @@ $this->section('content');
 
                 <label for="description" class="form-label">Kratka biografija</label>
                 <textarea row="4" class="form-control" name="description" 
-                placeholder="Napišite kratku biografiju do 1024 karaktera...">
-                    <?= set_value("description") ?>
-                </textarea>
+                placeholder="Napišite kratku biografiju do 1024 karaktera..."><?= set_value("description") ?></textarea>
                 <br/>
 
                 <label for="poster" class="form-label">Unesite fotografiju dimenzija 200 x 200</label>

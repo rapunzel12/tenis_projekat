@@ -22,7 +22,7 @@ $this->section('content');
             <?= $session->getFlashdata('msg') ?>
             <?= $session->getFlashdata('errors') ?>
             <br>
-            <form action="<?=site_url("Login/login") ?>" method="post">
+            <form action="<?=site_url("Guest/login") ?>" method="post">
                 <label for="text" class="form-label">Korisničko ime: </label>
                 <input type="text" class="form-control" name="username" 
                     placeholder="Unesite svoje ime..." value="<?= old('username') ?>">

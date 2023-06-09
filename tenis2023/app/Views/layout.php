@@ -34,6 +34,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                     <?= view("menu")?>
+                    
                 </ul>
             </div>
         </div>

@@ -2,25 +2,27 @@
 
 namespace App\Controllers;
 
+use App\Filters\AdminFilter;
 use App\Models\AdminModel;
 use App\Models\CoachModel;
 use App\Models\MemberModel;
 use App\Models\StudentModel;
+use App\Models\TariffModel;
 use App\Models\UserModel;
 
-class Register extends BaseController
+
+class Guest extends Main
 {
-    public function index()
-    {
+   
+    public function showRegistration(){
         return view('register');
     }
-
     public function register()
     {
         if(!$this->validate([
             // KOJA JE FUNKCIJA TRIM AKO SAM USPESNO REGISTROVALA KORISNIKA SA SVIM BELINAMA 
             // OKO SVIH POLJA GDE JE POSTAVLJENA REC TRIM???
-            'name' =>'required|min_length[3]|max_length[25]', //|regex_match[/regex/]', // prvo slovo velikim slovom
+            'name' =>['label'=>'Ime', 'rules'=> 'required|min_length[3]|max_length[25]'], //|regex_match[/regex/]', // prvo slovo velikim slovom
             'lastname' =>'required|min_length[3]|max_length[35]', //|regex_match[/regex/]', // prvo slovo velikim slovom
             'username' =>'required|is_unique[korisnik.korime]|min_length[3]|max_length[15]',
             // Koja je fora? prhihvata sve sifre bez obzira na to da li maju slova, 
@@ -52,13 +54,13 @@ class Register extends BaseController
             'email' =>$this->request->getPost('email'),
             'brtel' =>$this->request->getPost('tel'),
             'tip' =>((int)$this->request->getPost('user_type')),
-            'status' => '0' // ne radi ni ovako
+            'status' => '0' 
             // dodati status da je 0 = na cekanju, i posle to administrator dohvata te podatke
             // na ovaj nacin se upisuje u bazi 0, administartor mora da uradi update i da azurira to
             
         ];
 
-        var_dump($user);
+        // var_dump($user); // provera da li kupi sve podatke pre upisa u bazu
         
         $userModel = new UserModel();
         $userModel->insert($user);
@@ -99,15 +101,12 @@ class Register extends BaseController
             ]);
         } 
         // nakon upisivanja korisnika u bazu moram da uradi update i da dodam sliku koja ce autoinkrementom da dobije svoj naziv
-        // $userModel = new UserModel();
-        // visak $userId = $userModel->insert($user); // dohvatam dodeljeni Id useru te se sada slikama moze dodati odgovarajuci broj koji korespondira sa id-em
-
         $poster = $this->request->getFile('poster');
-        $posterName = $userId. ".".$poster->getExtension();; // trebalo bi da se proveri koja je ekstenzija i da se konkatenira sa njom
+        $posterName = $userId. ".".$poster->getExtension();; 
         $poster->move("../public/assets/img/users", $posterName, true);
 
         $user = [
-            'tip' => 'user_type',
+            // 'tip' => 'user_type', - na ovaj nacin bih ponovo prebrisala tip korisnika i upisivala se 0. 
             'poster'=> $posterName,
         ];
 
@@ -116,10 +115,67 @@ class Register extends BaseController
         
         
         
-        return redirect()->to('Register/index')->with("msg", 'Success');
+        return redirect()->to('Guest/showRegistration')->with("msg", 'Success');
     }
 
 
-    
+    public function viewLogin()
+    {
+        return view('login');
+    }
 
+
+
+    public function login()
+    {
+        // provere za login ako su polja prazna i prelazak na sledecu stranicu
+        if (!$this->validate([
+            'username' =>'required|if_exist', 
+            'password' =>'required|if_exist', 
+            'user_type' =>'required'
+        ])) {
+            return redirect()->back()->withInput() // cuvaju se svi inputi koji su vec uneti
+                ->with('errors', $this->validator->listErrors('list'));
+        }
+
+        $user = [
+            'korime' =>$this->request->getPost('username'),
+            'pass' =>$this->request->getPost('password'),
+            'tip' =>$this->request->getPost('user_type'),
+            'status'=>'1'
+        ];
+        // dohvatanje modela
+        $userModel = new UserModel();
+        $users = $userModel->where($user)->get()->getResult();
+        // var_dump($user[0]);
+        if ($users == null || count($users)==0) {  // provera da li postoji korisnik kojeg smo zadali, 
+            // prihvata sve podatke iako mozda takvi korisnici ne postoje u bazi
+            return redirect()->back()->withInput() // cuvaju se svi inputi koji su vec uneti
+                ->with('errors', "Korisnik ne postoji" );
+        } 
+        
+        $user = $users[0];
+        $session = \Config\Services::session(); 
+
+        $this->session->set('user', $user);  // prvi user je sacuvan u sesiji, na to se odnosi 'user'
+        
+        if($user->tip == 0) {
+        
+            return redirect()->to('Member'); 
+        }
+        if($user->tip == 1) {
+        
+            return redirect()->to('Student');
+        }
+
+        if($user->tip == 2) {
+        
+            return redirect()->to('Coach'); 
+        }
+        if($user->tip == 3) {
+        
+            return redirect()->to('Admin');
+        }
+        
+    }
 }

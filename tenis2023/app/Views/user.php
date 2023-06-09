@@ -1,1 +1,4 @@
-Dobrodosli, <?= $name; ?>
+<?php 
+// $this->renderSection('user');?>
+
+<!-- Dobrodošli, < ?= $name; ?> -->
