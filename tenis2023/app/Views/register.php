@@ -70,22 +70,18 @@ $this->section('content');
                 <label for="description" class="form-label">Kratka biografija</label>
                 <textarea row="4" class="form-control" name="description" 
                 placeholder="Napišite kratku biografiju do 1024 karaktera...">
-                    <?= old("description") ?>
+                    <?= set_value("description") ?>
                 </textarea>
                 <br/>
 
-                <label for="poster" class="form-label">Fotografija</label>
+                <label for="poster" class="form-label">Unesite fotografiju dimenzija 200 x 200</label>
                 <input type="file" class="form-control" name="poster" accept="image/*" 
-                    placeholder="Unesite fotografiju dimenzija 200 x 200..." 
                     value="<?= set_value('poster') ?>" >
                 <br/>
 
                 <button type="submit" class="btn btn-primary">Registruj se</button>
 
 
-
-
-            </form>
 
 
             </form>
