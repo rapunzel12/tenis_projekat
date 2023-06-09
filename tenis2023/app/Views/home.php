@@ -5,14 +5,51 @@ $this->section('content');
 ?>
 
 <!-- Masthead-->
-<header class="masthead">
-    <div class="container">
-        <div class="masthead-subheading">Welcome To Our Studio!</div>
-        <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-        <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
-    </div>
-</header>
+<div class="owl-carousel owl-theme">
 
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="item">
+          <header class="masthead masthead_wrapper">
+            <div class="container">
+              <div class="masthead-subheading">Dobro došli na tenis</div>
+              <div class="masthead-heading text-uppercase">Uskoro se družimo</div>
+            </div>
+          </header>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="item">
+          <header class="masthead1 masthead_wrapper">
+            <div class="container">
+              <div class="masthead-subheading">Dobro došli na tenis</div>
+              <div class="masthead-heading text-uppercase">Uskoro se družimo</div>
+            </div>
+          </header>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="item">
+          <header class="masthead2 masthead_wrapper">
+            <div class="container">
+              <div class="masthead-subheading">Dobro došli na tenis</div>
+              <div class="masthead-heading text-uppercase">Uskoro se družimo</div>
+            </div>
+          </header>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button> 
+</header>
+</div>
  
 <!-- About-->
 <!--
