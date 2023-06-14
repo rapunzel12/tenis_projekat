@@ -1,4 +1,3 @@
-
 <?php
 
 $this->extend('layout');
@@ -7,32 +6,20 @@ $this->section('content');
 
 ?>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 <div class="masthead container">
     <div class="row">
+        <?= view("admin/admin_menu") ?>
         <div class="col-sm-6">
-
-
-
-
-
-
-
-        
+        <br>
+        <br>
+        <br>
+        <br>
+            <h2 class="section-heading text-uppercase">Pretraga prema statusu korisnika</h2>
             <br>
             <?php $session = \Config\Services::session(); ?>
-            <?= $session->getFlashdata('msg') ?>
-            <?= $session->getFlashdata('errors') ?>
+            <h4><?= $session->getFlashdata('msg') ?></h4>
+            <h4><?= $session->getFlashdata('errors') ?></h4>
             <br>
-            <h2 class="section-heading text-uppercase">Pretraga prema statusu korisnika</h2>
             <form action="<?= site_url("Admin/search") ?>" method="post">
 
                 <label for="status" class="form-label">Status:</label>
@@ -42,7 +29,7 @@ $this->section('content');
                     <option value="1" <?= set_select('status', '1') ?>>prihvaćen</option>
                     <option value="2" <?= set_select('status', '2') ?>>odbijen</option>
                     <option value="3" <?= set_select('status', '3') ?>>arhiviran</option>
-                    
+
                     <option value="4" <?= set_select('status', '4') ?>>svi korisnici</option>
                 </select>
                 <br>

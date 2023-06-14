@@ -29,11 +29,16 @@ $this->section('content');
                                 <th>Naziv usluge</th>
                                 <th>Cena usluge</th>
                             </tr>
-                            <?php foreach ($tariffs as $tariff) { ?>
+                            <?php 
+                            $rb = 1;
+                            foreach ($tariffs as $tariff) { ?>
                                 <tr>
-                                    <td><?= $tariff->idcena. ". " ?></td>
+                                    <td><?php 
+                                    echo $rb . ". "; 
+                                    $rb++;
+                                    ?></td>
                                     <td><?= $tariff->naziv ?></td>
-                                    <td><?= $tariff->ukupno. " RSD" ?></td>
+                                    <td><?= $tariff->ukupno. ",00 RSD" ?></td>
                                 </tr>
 
                             <?php
