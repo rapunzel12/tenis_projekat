@@ -20,11 +20,12 @@ class Zahtevi extends User
     {        
         $rezervacijaModel = new RezervacijaModel();        
         $zahteviRekreativaca = $rezervacijaModel
-        ->select('idrez, teren_idteren, termin_idtermin, rezervacija.status, brrek, cena, rekreativac_idkor, trener_idkor, idtermin, datum, vreme, ime, prezime, brtel, tippod, opis  ')
-        ->join('termin', 'termin_idtermin = idtermin')
-        ->join('korisnik', 'rekreativac_idkor = idkor')
-        ->join('teren', 'teren_idteren = idteren')
-        ->where("termin_idtermin = idtermin and rekreativac_idkor = idkor and teren_idteren = idteren and trener_idkor = " . $this->session->get("user")->idkor)
+        ->select('idrez, rezervacija.idteren, rezervacija.idtermin, rezervacija.status, brrek, cena, korisnik_idkor, trener_idkor, termin.idtermin, datum, vreme, ime, prezime, brtel, tippod, opis, korisnik.tip')
+        ->join('termin', 'rezervacija.idtermin = termin.idtermin')
+        ->join('korisnik', 'rezervacija.korisnik_idkor = korisnik.idkor')
+        ->join('teren', 'rezervacija.idteren = teren.idteren')
+        ->where("rezervacija.idtermin = termin.idtermin and rezervacija.korisnik_idkor = korisnik.idkor and rezervacija.idteren = teren.idteren and trener_idkor = " . $this->session->get("user")->idkor)
+        ->where('korisnik.tip' , '0')
         ->orderby("datum, vreme asc")
         ->findAll();             
         
@@ -35,7 +36,7 @@ class Zahtevi extends User
     {
 
         $rezervacijaModel = new RezervacijaModel();  
-        $idTermina = $rezervacijaModel->find($id)->termin_idtermin;            
+        $idTermina = $rezervacijaModel->find($id)->idtermin;            
         $rezervacijaModel->delete($id);       
 
         $terminModel = new TerminModel();

@@ -71,7 +71,7 @@
                             $zahtev->tippod = "Beton";
                             break;
                     }               
-                    echo "<td>T br".$zahtev->teren_idteren." ".$zahtev->tippod."</td>";  
+                    echo "<td>T br".$zahtev->idteren." ".$zahtev->tippod."</td>";  
                     switch ($zahtev->status) {
                         case 'slo':
                             $zahtev->status= "Slobodan";

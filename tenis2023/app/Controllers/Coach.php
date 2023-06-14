@@ -16,7 +16,12 @@ class Coach extends BaseController
     {        
         
         $rezervacijaModel = new RezervacijaModel();
-        $rezervacijaNaCekanju = $rezervacijaModel->where('trener_idkor', $this->session->get("user")->idkor)->where('status', 'cek')->countAllResults();
+        $rezervacijaNaCekanju = $rezervacijaModel
+        ->join('korisnik', 'rezervacija.korisnik_idkor = korisnik.idkor')
+        ->where('trener_idkor', $this->session->get("user")->idkor)
+        ->where('rezervacija.status', 'cek')
+        ->where('korisnik.tip', '0')->countAllResults();
+
 
         $grupaModel = new GrupaModel();
         $sveGrupe = $grupaModel->sveGrupeTrenera($this->session->get("user")->idkor);
