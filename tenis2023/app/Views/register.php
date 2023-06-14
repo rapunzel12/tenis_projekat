@@ -58,7 +58,7 @@ $this->section('content');
                 <br>
 
                 <label for="user_type" class="form-label" >Tip korisnika:</label>
-                <select class="form-select" name="user_type" id="description">
+                <select class="form-select" name="user_type" id="user_type">
                     <option selected disabled hidden value="">Izaberite...</option>
                     <option value="0" <?= set_select('user_type', '0')?> >rekreativac</option>
                     <option value="1" <?= set_select('user_type', '1')?> >učenik</option>
@@ -67,41 +67,35 @@ $this->section('content');
                 </select>
                 <br>
 
-                <!-- <label for="description" class="form-label" id="description">Kratka biografija</label> -->
-                <!-- <textarea row="4" class="form-control" name="description" 
+                <label for="description" class="form-label" id="description_name" hidden>Kratka biografija</label>                
+                <textarea row="4" class="form-control" name="description" 
                 placeholder="Napišite kratku biografiju do 1024 karaktera..." 
-                id="description">< ?= set_value("description") ?></textarea>  -->
+                id="description" hidden><?= set_value("description") ?></textarea>
                 <br/>
 
                 <label for="poster" class="form-label">Unesite fotografiju dimenzija 200 x 200</label>
                 <input type="file" class="form-control" name="poster" accept="image/*" 
                     value="<?= set_value('poster') ?>" >
                 <br/>
-
                 <button type="submit" class="btn btn-primary">Registruj se</button>
-
-
-
-
             </form>
         </div>
-
-       
-
-
 </div>
 
 <script>
     // Javascript funkcija za prikazivanje polja za Kratku biografiju nakon odabira tipa korisnika = trener
-    function showDescription(){
-    document.querySelector('#description').addEventListener("change", function() {
+    document.querySelector('#user_type').addEventListener("change", function() {
         let opis = document.getElementById('description');
+        let opis_name = document.getElementById('description_name');
         if (this.value == "2") {
-          let textarea = document.createElement('textarea');
-            opis.appendChild(textarea);
+            opis.removeAttribute('hidden');
+            opis_name.removeAttribute('hidden');
+        } else{
+            opis.setAttribute('hidden', true);
+            opis_name.setAttribute('hidden', true);
         }
       });
-    }
+    
     </script>
 
 <?php

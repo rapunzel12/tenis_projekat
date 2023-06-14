@@ -30,7 +30,7 @@ $this->section('content');
                     <option value="S" <?= set_select('court_type', 'S') ?>>šljaka</option>
                     <option value="T" <?= set_select('court_type', 'T') ?>>trava</option>
                     <option value="B" <?= set_select('court_type', 'B') ?>>beton</option>
-                    <option value="4" <?= set_select('court_type', '4') ?>>svi tereni</option>
+                    <option value="" <?= set_select('court_type', '') ?>>svi tereni</option>
                 </select>
                 <br>
 

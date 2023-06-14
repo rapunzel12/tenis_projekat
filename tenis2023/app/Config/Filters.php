@@ -86,9 +86,9 @@ class Filters extends BaseConfig
         
         'user' => ['before'=> ['User/*', 'User']],
         'admin' => ['before'=> ['Admin/*', 'Admin']], 
-        'student' => ['before'=> ['Student/*', 'Student']], 
+        'student' => ['before'=> ['Student/*', 'Student']], // mozda ce se i ovde dodati neke nove putanje u smislu filtera
         'member' => ['before'=> ['Member/*', 'Member']], 
-        'coach' => ['before'=> ['Coach/*', 'Coach']], 
+        'coach' => ['before'=> ['Coach/*', 'Coach']], // ovde ce se dodati neke nove putanje
         'guest' => ['before'=> ['Guest/*', 'Guest', '/']], 
         
     ];

@@ -13,6 +13,7 @@
 
 <?php } else { ?>
 
+<li class="nav-item"><?= anchor('User/index', 'Moj profil', ["class"=>"nav-link"] ) ?></li>
 <li class="nav-item"><?= anchor('User/logout', 'Odjava', ["class"=>"nav-link"] ) ?></li>
 
 <?php } ?>
