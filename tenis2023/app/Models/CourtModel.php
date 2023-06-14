@@ -25,4 +25,15 @@ class CourtModel extends Model
             $builder->select('tippod, opis');
         return $builder->get()->getResultArray();
     }
+	
+	 public function sviTereni()
+    {
+        $tereni = $this->findAll();
+        $tereniDropDown = [];        
+        foreach($tereni as $teren) 
+        {
+            $tereniDropDown[$teren->idteren] = 'Teren br'.$teren->idteren.' '.$teren->tippod;
+        }
+        return $tereniDropDown;
+    }
 }
