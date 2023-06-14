@@ -11,9 +11,9 @@
         <div class="col-sm-12 col-md-6 d-grid gap-2">       
             <a href="zahtevi/zahteviUcenika" class="btn btn-outline-warning mb-3 p-3">Zahtevi od učenika <span class="badge rounded-pill text-bg-danger"> <?= $ukupnoZahtevaUcenika?></span></a>
             <a href="zahtevi/zahteviRekreativaca" class="btn btn-outline-warning mb-3 p-3">Zahtevi rekreativaca za trening <span class="badge rounded-pill text-bg-danger"><?= $rezervacijaNaCekanju ?></span></a>
-            <a href="coach/rezervisanjeTermina" class="btn btn-outline-danger mb-3 p-3">Rezervisanje termina sa učenicima</a>
-            <a href="coach/pregledGrupnihTermina" class="btn btn-outline-info mb-3 p-3">Zakazani grupni termini - pregled <span class="badge rounded-pill text-bg-info"><?= $rezervacijaNaCekanju ?></span></a></a>
-            <a href="coach/pregledIndividualnihTermina" class="btn btn-outline-info mb-3 p-3">Zakazani individualni termini - pregled <span class="badge rounded-pill text-bg-info"><?= $rezervacijaNaCekanju ?></span></a></a>
+            <a href="coach/rezervisanjeTermina" class="btn btn-outline-danger mb-3 p-3 disabled">Rezervisanje termina sa učenicima</a>
+            <a href="coach/pregledGrupnihTermina" class="btn btn-outline-info mb-3 p-3 disabled">Zakazani grupni termini - pregled <span class="badge rounded-pill text-bg-info"><?= $rezervacijaNaCekanju ?></span></a></a>
+            <a href="coach/pregledIndividualnihTermina" class="btn btn-outline-info mb-3 p-3 disabled">Zakazani individualni termini - pregled <span class="badge rounded-pill text-bg-info"><?= $rezervacijaNaCekanju ?></span></a></a>
         </div>
         <div class="col-sm-12 col-md-6 d-grid gap-2">
             <a href="coach/pregledGrupa" class="btn btn-outline-secondary mb-3 p-3">Grupe - pregled <span class="badge rounded-pill text-bg-secondary"><?= $ukupnoGrupa ?></span></a>

@@ -97,7 +97,7 @@
                         echo "<td class='text-center'>".anchor('zahtevi/delZahtevRekreativca/'.$zahtev->idrez, '<i class="fa-solid fa-trash-can fa-2xl" style="color: #ad0123;" title="Obriši"></i>')."</td>";
                     }
                     else {
-                        echo "<td class='text-center'>".anchor('zahtevi/otkaziZahtevRekreativca/'.$zahtev->idrez, '<i class="fa-solid fa-square-xmark fa-2xl" style="color: #ad0123;" title="Obriši"></i>')."</td>";
+                        echo "<td class='text-center'>".anchor('zahtevi/otkaziZahtevRekreativca/'.$zahtev->idrez, '<i class="fa-solid fa-square-xmark fa-2xl" style="color: #ad0123;" title="Otkaži"></i>')."</td>";
                         echo "<td class='text-center'><i class=\"fa-solid fa-trash-can fa-2xl\" style=\"color: #f1f1f1;\" title=\"Obriši\"></i></td>";
                     }                
                     
