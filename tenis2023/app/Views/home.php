@@ -50,7 +50,29 @@ $this->section('content');
     </button> 
 </header>
 </div>
+<div class="Onama">
+    <h1>Teniski klub</h1>
+    <p>Teniski klub "Team 1" je otvoren septembra 2008. godine</p>
+    <p>Klub poseduje modernu klupsku zgradu, sest terena za tenis sa vrhunskim podlogama (trava,sljaka,beton) koji se rredovno odrzavaju.</p>
+    <p>Dva terena imaju podlogu na kojoj cesto nasi reprezentativci Janko Tipsarevic, Nenad Zimonjic, Viktor Troicki,Ana Jovanovic,Bojana JOvanovski,Miki Jankovic,Dusan Vukicevic.</p>
+    <p>Klub poseduje fantasticne uslove za trening takmicara tako da usko saradjuju sa Teniskim Savezom Srbije</p>
+    <p>Zbog svog svojstvenog stila i duha klub ima dosta stalnih clanova koji se rekreativno bave tenisom po najpovoljnijim cenama i suszivaju u njegovim mogucnostima.Nas klub nudi kvalitetne programe za rekreativca u ucesnike.</p> 
+</div>
  
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="map-container">
+          <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2856.620868283015!2d-122.41963618447715!3d37.77492927910468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan%20Francisco%2C%20CA%2C%20USA!5e0!3m2!1sen!2sca!4v1632467241476!5m2!1sen!2sca" allowfullscreen="" loading="lazy"></iframe>
+          <div class="text-container">
+            <h2>Lokacija</h2>
+            <p>Adresa: Primjer ulica 123, Grad, Država</p>
+            <p>Telefon: +123 456 789</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <!-- About-->
 <!--
 <section class="page-section" id="about">
