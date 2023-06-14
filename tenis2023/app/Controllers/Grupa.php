@@ -9,7 +9,7 @@ use App\Models\UserModel;
 use App\Models\ZahtevModel;
 use PHPUnit\Util\Xml\Loader;
 
-class Grupa extends BaseController
+class Grupa extends User
 {
    
     public function delGrupa($id)

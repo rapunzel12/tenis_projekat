@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\AdminModel;
+use App\Models\CourtModel;
 use App\Models\TariffModel;
 use App\Models\UserModel;
 
@@ -18,7 +19,14 @@ class Main extends BaseController
     public function viewTenisCourts(){
         return view('tenis_courts');
     }
+    public function viewTenisCourtsTypes(){
 
+        $courtModel = new CourtModel();
+
+        $courts = $courtModel->findAll();
+
+        return view('tenis_courts_types', ['courts'=>$courts]);
+    }
     public function viewTenisCoaches(){
         return view('tenis_coaches');
     }

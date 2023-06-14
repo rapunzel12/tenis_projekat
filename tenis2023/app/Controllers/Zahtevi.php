@@ -6,7 +6,7 @@ use App\Models\TerminModel;
 use App\Models\RezervacijaModel;
 use App\Models\ZahtevModel;
 
-class Zahtevi extends BaseController
+class Zahtevi extends User
 {
    
     public function index()
