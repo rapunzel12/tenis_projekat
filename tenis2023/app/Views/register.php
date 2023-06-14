@@ -17,8 +17,8 @@ $this->section('content');
             
             <br>
             <?php $session = \Config\Services::session(); ?>
-            <?= $session->getFlashdata('msg') ?>
-            <?= $session->getFlashdata('errors') ?>
+            <h4><?= $session->getFlashdata('msg') ?></h4>
+            <h4><?= $session->getFlashdata('errors') ?></h4>
             <br>
             <form action="<?=site_url("Guest/register") ?>" method="post" enctype="multipart/form-data">
 
@@ -58,7 +58,7 @@ $this->section('content');
                 <br>
 
                 <label for="user_type" class="form-label" >Tip korisnika:</label>
-                <select class="form-select" name="user_type" >
+                <select class="form-select" name="user_type" id="description">
                     <option selected disabled hidden value="">Izaberite...</option>
                     <option value="0" <?= set_select('user_type', '0')?> >rekreativac</option>
                     <option value="1" <?= set_select('user_type', '1')?> >učenik</option>
@@ -67,9 +67,10 @@ $this->section('content');
                 </select>
                 <br>
 
-                <label for="description" class="form-label">Kratka biografija</label>
-                <textarea row="4" class="form-control" name="description" 
-                placeholder="Napišite kratku biografiju do 1024 karaktera..."><?= set_value("description") ?></textarea>
+                <!-- <label for="description" class="form-label" id="description">Kratka biografija</label> -->
+                <!-- <textarea row="4" class="form-control" name="description" 
+                placeholder="Napišite kratku biografiju do 1024 karaktera..." 
+                id="description">< ?= set_value("description") ?></textarea>  -->
                 <br/>
 
                 <label for="poster" class="form-label">Unesite fotografiju dimenzija 200 x 200</label>
@@ -84,8 +85,24 @@ $this->section('content');
 
             </form>
         </div>
+
+       
+
+
 </div>
 
+<script>
+    // Javascript funkcija za prikazivanje polja za Kratku biografiju nakon odabira tipa korisnika = trener
+    function showDescription(){
+    document.querySelector('#description').addEventListener("change", function() {
+        let opis = document.getElementById('description');
+        if (this.value == "2") {
+          let textarea = document.createElement('textarea');
+            opis.appendChild(textarea);
+        }
+      });
+    }
+    </script>
 
 <?php
 $this->endSection();

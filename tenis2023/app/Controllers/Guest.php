@@ -20,25 +20,22 @@ class Guest extends Main
     public function register()
     {
         if(!$this->validate([
-            // KOJA JE FUNKCIJA TRIM AKO SAM USPESNO REGISTROVALA KORISNIKA SA SVIM BELINAMA 
-            // OKO SVIH POLJA GDE JE POSTAVLJENA REC TRIM???
             'name' =>['label'=>'Ime', 'rules'=> 'required|min_length[3]|max_length[25]'], //|regex_match[/regex/]', // prvo slovo velikim slovom
-            'lastname' =>'required|min_length[3]|max_length[35]', //|regex_match[/regex/]', // prvo slovo velikim slovom
-            'username' =>'required|is_unique[korisnik.korime]|min_length[3]|max_length[15]',
+            'lastname' =>['label'=>'Prezime', 'rules' => 'required|min_length[3]|max_length[35]'], //|regex_match[/regex/]', // prvo slovo velikim slovom
+            'username' =>['label'=>'Korisničko ime', 'rules' => 'required|is_unique[korisnik.korime]|min_length[3]|max_length[15]'],
             // Koja je fora? prhihvata sve sifre bez obzira na to da li maju slova, 
             // bojeve i znake za interpunkciju
-            'password' =>'required|alpha_numeric_punct|min_length[8]|max_length[15]', // alpha_numeric radi, ali ne ono sto sam ja zelela
-            'passconf' => 'required|matches[password]', // ova provera radi
-            'email' =>'required|valid_email',
-            'tel' =>'required|integer|max_length[15]',
-            'user_type' =>'required',
-            'poster' => [
+            'password' =>['label'=>'Šifra', 'rules' => 'required|alpha_numeric_punct|min_length[8]|max_length[15]'], // alpha_numeric radi, ali ne ono sto sam ja zelela
+            'passconf' => ['label'=>'Ponovljena šifra', 'rules' => 'required|matches[password]'], // ova provera radi
+            'email' =>['label'=>'E-mail', 'rules' => 'required|valid_email'],
+            'tel' =>['label'=>'Telefon', 'rules' => 'required|integer|max_length[15]'],
+            'user_type' =>['label'=>'Tip korisnika', 'rules' => 'required'],
+            'poster' => ['label'=>'Fotografija', 'rules' => 
                 'uploaded[poster]',
                 'max_size[poster,1024]',
                 'mime_in[poster,image/png,image/jpeg, image/jpg]'
             ],
         ])){
-            // ako validacija ne vrati tacno, redirektujemo se na istu stranicu sa vec unetim podacima
             return redirect()->back()->withInput() // cuvaju se svi inputi koji su vec uneti
                 ->with('errors', $this->validator->listErrors('list'));
         }
@@ -55,9 +52,6 @@ class Guest extends Main
             'brtel' =>$this->request->getPost('tel'),
             'tip' =>((int)$this->request->getPost('user_type')),
             'status' => '0' 
-            // dodati status da je 0 = na cekanju, i posle to administrator dohvata te podatke
-            // na ovaj nacin se upisuje u bazi 0, administartor mora da uradi update i da azurira to
-            
         ];
 
         // var_dump($user); // provera da li kupi sve podatke pre upisa u bazu
@@ -109,13 +103,9 @@ class Guest extends Main
             // 'tip' => 'user_type', - na ovaj nacin bih ponovo prebrisala tip korisnika i upisivala se 0. 
             'poster'=> $posterName,
         ];
-
         $userModel->update($userId, $user);
 
-        
-        
-        
-        return redirect()->to('Guest/showRegistration')->with("msg", 'Success');
+        return redirect()->to('Guest/showRegistration')->with("msg", 'Uspešno ste poslali podatke za registraciju!');
     }
 
 
@@ -130,9 +120,9 @@ class Guest extends Main
     {
         // provere za login ako su polja prazna i prelazak na sledecu stranicu
         if (!$this->validate([
-            'username' =>'required|if_exist', 
-            'password' =>'required|if_exist', 
-            'user_type' =>'required'
+            'username' =>['label'=>'Korisničko ime', 'rules'=> 'required|if_exist'], 
+            'password' =>['label'=>'Šifra', 'rules'=> 'required|if_exist'], 
+            'user_type' =>['label'=>'Tip korisnika', 'rules'=> 'required']
         ])) {
             return redirect()->back()->withInput() // cuvaju se svi inputi koji su vec uneti
                 ->with('errors', $this->validator->listErrors('list'));
@@ -151,7 +141,7 @@ class Guest extends Main
         if ($users == null || count($users)==0) {  // provera da li postoji korisnik kojeg smo zadali, 
             // prihvata sve podatke iako mozda takvi korisnici ne postoje u bazi
             return redirect()->back()->withInput() // cuvaju se svi inputi koji su vec uneti
-                ->with('errors', "Korisnik ne postoji" );
+                ->with('errors', "Korisnik ne postoji." );
         } 
         
         $user = $users[0];

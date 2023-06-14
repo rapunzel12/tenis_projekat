@@ -8,11 +8,11 @@ $this->section('content');
 
 <div class="masthead container">
     <div class="row">
+        <?= view("admin/admin_menu") ?>
         <div class="col-sm-6">
             <br>
             <br>
             <br>
-           
             <br>
             <h2 class="section-heading text-uppercase">Pregled cenovnika teniskog kluba</h2>
             <br>
@@ -22,40 +22,47 @@ $this->section('content');
 
 
             ?>
-                    <div>
-                        <table class="table table-hover table-striped table-bordered" border="1" cellpadding="2" cellspacing="1">
+                <div>
+                    <table class="table table-hover table-striped table-bordered" border="1" cellpadding="2" cellspacing="1">
+                        <tr>
+                            <th>Redni broj</th>
+                            <th>Naziv usluge</th>
+                            <th>Cena usluge</th>
+                            <th>Obriši</th>
+                        </tr>
+
+                        <?php
+                        $rb = 1;
+                        foreach ($tariffs as $tariff) { ?>
+
                             <tr>
-                                <th>Redni broj</th>
-                                <th>Naziv usluge</th>
-                                <th>Cena usluge</th>
-                                <th>Obriši</th>
+                                <td><?php
+                                    echo $rb . ". ";
+                                    $rb++;
+                                    ?></td>
+                                <td><?= $tariff->naziv ?></td>
+                                <td><?= $tariff->ukupno . ",00 RSD" ?></td>
+                                <td><?= anchor('Admin/deletePrice/' . $tariff->idcena, 'Obriši', ['class' => 'btn btn-primary']) ?></td>
                             </tr>
-                            <?php foreach ($tariffs as $tariff) { ?>
-                                <tr>
-                                    <td><?= $tariff->idcena. ". " ?></td>
-                                    <td><?= $tariff->naziv ?></td>
-                                    <td><?= $tariff->ukupno. ",00 RSD" ?></td>
-                                    <td><?= anchor('Admin/deletePrice/' . $tariff->idcena, 'Obriši', ['class' => 'btn btn-primary']) ?></td>
-                                </tr>
 
-                            <?php
-                            }
-                            ?>
+                        <?php
+                        }
+                        ?>
 
-                        </table>
+                    </table>
                 <?php
-                }
-            
-                ?>
-                    </div>
+            }
 
-                    <br>
+                ?>
+                </div>
+
+                <br>
 
 
         </div>
 
-
     </div>
+</div>
 
 
 
