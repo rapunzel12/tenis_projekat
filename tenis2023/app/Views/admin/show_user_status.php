@@ -1,5 +1,7 @@
 <?php
 
+use function PHPUnit\Framework\countOf;
+
 $this->extend('layout');
 $this->section('content');
 ?>
@@ -18,6 +20,9 @@ $this->section('content');
             <br>
             <h2 class="section-heading text-uppercase">
                 <?php if (isset($users)) {
+                    if(count($users)==0){
+                        echo "Nema rezultata pretrage";
+                    } else {
                     //var_dump($users);
                     // return;
                     //$user=reset($users);
@@ -37,6 +42,7 @@ $this->section('content');
                     if ($user['status'] == 3) {
                         echo "Rezultat pretrage - arhivirani nalozi";
                     }
+                }
                 ?>
             </h2>
             <div>

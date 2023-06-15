@@ -19,9 +19,9 @@ $this->section('content');
             <h4><?= $session->getFlashdata('errors') ?></h4>
             <br>
             <?php if (isset($courts)) {
-                //if (sizeof($courts) == 0) {
-                //    echo "Nema rezultata pretrage";
-                //} else {
+                if (sizeof($courts) == 0) {
+                    echo "Nema rezultata pretrage";
+                } else {
                 $court = $courts[0];
                 if ($court['tippod'] == 0) {
                     echo "Tip terena - šljaka";
@@ -32,6 +32,7 @@ $this->section('content');
                 if ($court['tippod'] == 2) {
                     echo "Tip terena - beton";
                 }
+            }
             ?>
                 <div>
                     <table class="table table-hover table-striped table-bordered" border="1" cellpadding="2" cellspacing="1">

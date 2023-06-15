@@ -29,7 +29,8 @@ class Admin extends User
     {
         $userModel = new UserModel();
         $oldStatus=$userModel->find($idkor)->status;
-        $userModel->update($idkor, ['status' => $status]);
+        $userModel->update($idkor, ['status' => (string)$status]);
+        //var_dump($status);
         $users = $userModel->getUsers($oldStatus);
         return view("admin\show_user_status", ['users'=>$users]);
     }
@@ -94,13 +95,13 @@ class Admin extends User
     }
 
     // NE VRACA MI DOBAR VIEW, ALI BRISE U BAZI
-    public function deleteCourts($idteren, $oldCourt)
+    public function deleteCourts($idteren)
     {
         $courtModel =  new CourtModel();
-        $oldCourt=$courtModel->find($idteren)->oldCourt;
+        $tippod=$courtModel->find($idteren)->tippod;
         $courtModel->delete($idteren);
-        $courts = $courtModel->getCourts($idteren);     
-        return view('admin/show_all_courts', ['courts'=>$courts]);
+        $courts = $courtModel->getCourts($tippod);     
+        return view('admin/show_courts', ['courts'=>$courts]);
     }
 
     public function tariff()

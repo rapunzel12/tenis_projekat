@@ -63,14 +63,6 @@ class Guest extends Main
         // return;
 
 
-        if($user['tip']==0) 
-        {
-            $memberModel = new MemberModel();
-            $memberModel->insert([
-                'idkor' => $userId,
-            ]);
-        }
-
         if($user['tip']==1) 
         {
             $studentModel = new StudentModel();
@@ -84,6 +76,7 @@ class Guest extends Main
             $coachModel = new CoachModel();
             $coachModel->insert([
                 'idkor' => $userId,
+                'opis' => $this->request->getPost('description'),
             ]);
         } 
 
