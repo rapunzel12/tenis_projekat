@@ -4,139 +4,69 @@ $this->extend('layout');
 $this->section('content');
 ?>
 
-<!-- About-->
-
+<!--About-->
 <section class="page-section" id="about">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">About</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            <h2 class="section-heading text-uppercase">Teniski tereni</h2>
+            <h3 class="section-subheading text-muted"></h3>
         </div>
         <ul class="timeline">
-            <li>
-                <div class="timeline-image">
-                    <?php foreach ($courts as $court) { ?>
-                        <img class="rounded-circle img-fluid" src="<?= base_url('assets/img/tenis/' . $court->poster_vertical) ?>" alt="..." />
-                </div>
-                <div class="timeline-panel">
-                    <div class="timeline-heading">
-                        <h4><?php
-                            if ($court->tippod == "S") {
-                                echo "šljaka";
-                            }
-                            if ($court->tippod == "T") {
-                                echo "trava";
-                            }
-                            if ($court->tippod == "B") {
-                                echo "beton";
-                            }
-                            ?></h4>
-                        <h4 class="subheading"></h4>
-                    </div>
-                    <div class="timeline-body">
-                        <p class="text-muted">
-                            <?= $court->opis ?>
-                        </p>
-                        <!--Travnati tereni su najbrži tereni. Oni sadrže travu koja je uzgajana na veoma tvrdoj zemlji slično golf terenima, koja daje dodatne efekte loptici. Poeni traju veoma kratko i servis igra najznačajniju ulogu, i zbog toga se faforizuju servis-volej igrači. Ova podloga je mekša od tvrde podloge i zbog toga loptica niže odskače tako da igrači moraju da udare lopticu mnogo ranije. Zbog velikih troškova izgradnje, ovi tereni su retki kao i zbog toga što se moraju zalivati i kositi veoma često a i vreme sušenja posle kiše je veliko.
-        </p>-->
+            <?php foreach ($courts as $court) { ?>
+                <?php
+                if ($court->tippod == "S") {
+                    $courtN = "sljaka";
+                }
+                if ($court->tippod == "T") {
+                    $courtN = "trava";
+                }
+                if ($court->tippod == "B") {
+                    $courtN = "beton";
+                }
+                ?>
+                <li>
+                    <div class="timeline-image"><img class="mx-auto rounded-circle" src="<?= base_url('assets/img/tenis/' . $court->poster_vertical) ?>" width="157" height="157" alt="..."></div>
+                    <div class="timeline-panel" id="<?= $courtN ?>">
+                        <div class="timeline-heading">
+                            <h4><?php
+                                if ($court->tippod == "S") {
+                                    echo "Šljaka";
+                                }
+                                if ($court->tippod == "T") {
+                                    echo "Trava";
+                                }
+                                if ($court->tippod == "B") {
+                                    echo "Beton";
+                                }
+                                ?>
+                            </h4>
+                            <h4 class="subheading"></h4>
+                        </div>
+                        <div class="timeline-body">
+                            <p class="text-muted">
+                                <?= $court->opis ?>
+                            </p>
+                            <!--Travnati tereni su najbrži tereni. Oni sadrže travu koja je uzgajana na veoma tvrdoj zemlji slično golf terenima, koja daje dodatne efekte loptici. Poeni traju veoma kratko i servis igra najznačajniju ulogu, i zbog toga se faforizuju servis-volej igrači. Ova podloga je mekša od tvrde podloge i zbog toga loptica niže odskače tako da igrači moraju da udare lopticu mnogo ranije. Zbog velikih troškova izgradnje, ovi tereni su retki kao i zbog toga što se moraju zalivati i kositi veoma često a i vreme sušenja posle kiše je veliko.-->
+                            <!--Naši tereni od šljake su napravljeni od lomljene cigle i crvene su boje. Šljakasti tereni se smatraju sporim terenima jer loptica odskače relativno visoko i sporije tako da je igračima teško da udare winere. Poeni obično traju duže i jako je mali broj winera. Zbog toga ovakve terene vole igrači koji igraju više sa osnovne linije i defanzivno. Kretanje na šljakastim terenima se veoma razlikuje od drugih terena. Igranje na šljaci često uključuje proklizavanje ka loptici tokom udarca. Najpoznatiji tereni od šljake su Roland Garros.-->
+                            <!--Naši tvrdi treni su napravljeni od betona.Smatraju se srednje brzom podlogom gde loptica brzo ide i odskače nisko i zbog toga poeni traju relativno kratko. Snažni igrači sa jakim servisom imaju blagu prednost. Ovakvi tereni se mogu razlikovati po brzini ali su brži od šljakastih terena i sporiji od travnatih. Tvrdi tereni smatraju se pogodnim za najveći broj igrača.-->
+                        </div>
                     </div>
                 <?php } ?>
-                </div>
-
-
-    </div>
-    <div class="timeline-image"><img class="rounded-circle img-fluid" src="<?= base_url("assets/img/about/1.jpg") ?>" alt="..." /></div>
-    <div class="timeline-panel">
-        <div class="timeline-heading">
-            <h4>2009-2011</h4>
-            <h4 class="subheading">Our Humble Beginnings</h4>
-        </div>
-        <div class="timeline-body">
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-        </div>
-    </div>
-    </li>
-    <li class="timeline-inverted">
-        <div class="timeline-image"><img class="rounded-circle img-fluid" src="<?= base_url("assets/img/about/2.jpg") ?>" alt="..." /></div>
-        <div class="timeline-panel">
-            <div class="timeline-heading">
-                <h4>March 2011</h4>
-                <h4 class="subheading">An Agency is Born</h4>
-            </div>
-            <div class="timeline-body">
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-            </div>
-        </div>
-    </li>
-    <li>
-        <div class="timeline-image"><img class="rounded-circle img-fluid" src="<?= base_url("assets/img/about/3.jpg") ?>" alt="..." /></div>
-        <div class="timeline-panel">
-            <div class="timeline-heading">
-                <h4>December 2015</h4>
-                <h4 class="subheading">Transition to Full Service</h4>
-            </div>
-            <div class="timeline-body">
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-            </div>
-        </div>
-    </li>
-    <li class="timeline-inverted">
-        <div class="timeline-image"><img class="rounded-circle img-fluid" src="<?= base_url("assets/img/about/4.jpg") ?>" alt="..." /></div>
-        <div class="timeline-panel">
-            <div class="timeline-heading">
-                <h4>July 2020</h4>
-                <h4 class="subheading">Phase Two Expansion</h4>
-            </div>
-            <div class="timeline-body">
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
-            </div>
-        </div>
-    </li>
-    <li class="timeline-inverted">
-        <div class="timeline-image">
-            <h4>
-                Be Part
-                <br />
-                Of Our
-                <br />
-                Story!
-            </h4>
-        </div>
-    </li>
-    </ul>
+                </li>
+                <li class="timeline-inverted">
+                    <div class="timeline-image">
+                        <h4>
+                            BUDI DEO
+                            <br />
+                            NAŠEG
+                            <br />
+                            KLUBA!
+                        </h4>
+                    </div>
+                </li>
+        </ul>
     </div>
 </section>
-
-<!-- Clients-->
-
-<div class="py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="<?= base_url("assets/img/logos/microsoft.svg") ?>" alt="..." aria-label="Microsoft Logo" /></a>
-            </div>
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="<?= base_url("assets/img/logos/google.svg") ?>" alt="..." aria-label="Google Logo" /></a>
-            </div>
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="<?= base_url("assets/img/logos/facebook.svg") ?>" alt="..." aria-label="Facebook Logo" /></a>
-            </div>
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="<?= base_url("assets/img/logos/ibm.svg") ?>" alt="..." aria-label="IBM Logo" /></a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
 <?php
 $this->endSection();
 ?>
