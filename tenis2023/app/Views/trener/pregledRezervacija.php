@@ -25,7 +25,7 @@
             echo form_label('Filter status:', 'status');
             echo form_dropdown('status', $status, $_GET['status']??"");
             echo form_submit('search', 'Prikaži', ['class'=> 'btn btn-primary']);
-            echo "<a href='pregledRezervacija' class='btn btn-primary'>Reset</a>";
+            if (isset($_GET['status'])) echo "<a href='pregledRezervacija' class='btn btn-primary'>Reset</a>";
             echo form_close();
             echo "<br><br>";
 

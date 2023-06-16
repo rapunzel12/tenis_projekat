@@ -187,7 +187,7 @@ class Coach extends User
         $terminModel = new TerminModel();
         $terminModel->delete($idTermina);
         
-        return redirect()->to('Coach/pregledRezervacija')->with("msg", 'Rezervacija je obrisana.');
+        return redirect()->to('Coach/pregledRezervacija')->with("msg", 'Termin je obrisan.');
     }
 
     public function otkaziRezervaciju($id){
@@ -196,7 +196,7 @@ class Coach extends User
         $rezervacija->status = 'otk';
         $rezervacijaModel->update($id, $rezervacija);   
         
-        return redirect()->to('Coach/pregledRezervacija')->with("msg", 'Rezervacija je otkazana.');
+        return redirect()->to('Coach/pregledRezervacija')->with("msg", 'Termin je otkazan.');
     }
     
 }
