@@ -6,8 +6,8 @@
 <?= view("trener/trener_header.php")?>
 
 <div class="container">
-    <div class="row">
-        <h3 class="text-center mb-4">Trener meni</h3> 
+    <div class="row mt-5">        
+        <h2 class="text-center mb-5 mt-5">Trener meni</h2> 
         
         <div class="col-sm-12 col-md-6 d-grid gap-2">       
             <a href="zahtevi/zahteviUcenika" class="btn btn-outline-warning mb-3 p-3">Zahtevi od učenika <span class="badge rounded-pill text-bg-danger"> <?= $ukupnoZahtevaUcenika?></span></a>
