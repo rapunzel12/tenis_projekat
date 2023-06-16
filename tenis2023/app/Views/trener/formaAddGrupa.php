@@ -52,7 +52,7 @@
       
         
     }
-	else echo "<p>Nema slobodnih ucenika.</p>";
+	else echo "<p>Nemate slobodnih učenika.</p>";
     echo "</div>";
 
     echo "<p class='text-danger text-end'>*Odabrati minimum dva učenika, najviše tri.</p>";
@@ -80,7 +80,7 @@
           if (clicked.checked) {          
             if (odabraniUcenici.length >= 3) {
               clicked.checked = false;
-              alert('Maximum tri ucenika u grupi.');
+              alert('Odaberite najviše tri učenika.');
               return;
             }
 
@@ -97,7 +97,7 @@
       var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked'); // svi checkirani
       if (checkboxes.length < 2) { // ako je manje od dva chekirana
         event.preventDefault(); // spreci slanje forme
-        alert('Minimum dva ucenika.'); // obavesti korisnika
+        alert('Grupa mora imati najmanje dva učenika.'); // obavesti korisnika
       }
     });
   </script>

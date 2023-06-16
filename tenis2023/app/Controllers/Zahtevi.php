@@ -9,13 +9,7 @@ use App\Models\ZahtevModel;
 class Zahtevi extends User
 {
    
-    public function index()
-    {
-        return view('trener/zahteviRekreativaca');
-    }
-
-
-    
+      
     public function zahteviRekreativaca()    
     {        
         $rezervacijaModel = new RezervacijaModel();        
@@ -32,7 +26,7 @@ class Zahtevi extends User
         return view("trener/zahteviRekreativaca", ["zahteviRekreativaca" => $zahteviRekreativaca]);        
     }
 
-    public function delZahtevRekreativca($id)
+    public function obrisiZahtevRekreativca($id)
     {
 
         $rezervacijaModel = new RezervacijaModel();  

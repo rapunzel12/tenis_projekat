@@ -26,11 +26,12 @@
         if (!empty($zahteviRekreativaca))
         {
             echo form_open('zahtevi/zahteviRekreativaca', ['method' =>'get']);                
-            //$status = ['' => "Svi", 'slo' => "Slobodan", 'rez' => "Rezervisan", 'odb' => "Odbijen", 'otk' => "Otkazan", 'cek' => "Na čekanju"];        
-            $status = ['' => "Svi", 'otk' => "Otkazan", 'cek' => "Na čekanju"];        
+            
+            $status = ['' => '', 'rez' => 'Rezervisan', 'otk' => "Otkazan", 'cek' => "Na čekanju"];        
             echo form_label('Filter status:', 'status');
             echo form_dropdown('status', $status, $_GET['status']??"");
             echo form_submit('search', 'Prikaži', ['class'=> 'btn btn-primary']);
+            echo "<a href='zahteviRekreativaca' class='btn btn-primary'>Reset</a>";
             echo form_close();
             echo "<br><br>";
 
@@ -58,8 +59,8 @@
                     echo "<td>".$zahtev->datum."</td>";
                     echo "<td>".$zahtev->vreme."</td>";    
                     echo "<td>".$zahtev->ime." ".$zahtev->prezime."</td>";                
-                    echo "<td>".$zahtev->brrek."</td>";
-                    echo "<td>".$zahtev->cena."</td>";
+                    echo "<td class='text-center'>".$zahtev->brrek."</td>";
+                    echo "<td class='text-center'>".$zahtev->cena."</td>";
                     switch ($zahtev->tippod) {
                         case 'S':
                             $zahtev->tippod = "Šljaka";
@@ -71,7 +72,7 @@
                             $zahtev->tippod = "Beton";
                             break;
                     }               
-                    echo "<td>T br".$zahtev->idteren." ".$zahtev->tippod."</td>";  
+                    echo "<td class='text-center'>Teren ".$zahtev->tippod."</td>";  
                     switch ($zahtev->status) {
                         case 'slo':
                             $zahtev->status= "Slobodan";
@@ -89,15 +90,15 @@
                             $zahtev->status= "Na čekanju";
                             break;
                     }               
-                    echo "<td>".$zahtev->status."</td>";                
+                    echo "<td class='text-center'>".$zahtev->status."</td>";                
                     
                     if ($zahtev->status == 'Otkazan') 
                     {
                         echo "<td class='text-center'><i class=\"fa-solid fa-square-xmark fa-2xl\" style=\"color: #f1f1f1;\" title=\"Otkaži\"></i></td>";
-                        echo "<td class='text-center'>".anchor('zahtevi/delZahtevRekreativca/'.$zahtev->idrez, '<i class="fa-solid fa-trash-can fa-2xl" style="color: #ad0123;" title="Obriši"></i>')."</td>";
+                        echo "<td class='text-center'>".anchor('zahtevi/obrisiZahtevRekreativca/'.$zahtev->idrez, '<i class="fa-solid fa-trash-can fa-2xl" style="color: #ad0123;" title="Obriši"></i>')."</td>";
                     }
                     else {
-                        echo "<td class='text-center'>".anchor('zahtevi/otkaziZahtevRekreativca/'.$zahtev->idrez, '<i class="fa-solid fa-square-xmark fa-2xl" style="color: #ad0123;" title="Otkaži"></i>')."</td>";
+                        echo "<td class='text-center'>".anchor('zahtevi/otkaziZahtevRekreativca/'.$zahtev->idrez, '<i class="fa-solid fa-square-xmark fa-2xl" style="color: ##ffc800;" title="Otkaži"></i>')."</td>";
                         echo "<td class='text-center'><i class=\"fa-solid fa-trash-can fa-2xl\" style=\"color: #f1f1f1;\" title=\"Obriši\"></i></td>";
                     }                
                     

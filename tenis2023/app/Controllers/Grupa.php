@@ -28,8 +28,8 @@ class Grupa extends User
         
         if(!$this->validate(
             [
-                'naziv' => 'required|min_length[3]|max_length[15]|alpha_numeric_punct',
-                'ucenik' => 'required'
+                'naziv' => ['label' => 'Naziv grupe', 'rules' => 'required|min_length[3]|max_length[15]|alpha_numeric_punct'],
+                'ucenik' => ['label' => 'Učenik', 'rules' => 'required']
             ]
         )) {
             return redirect()->back()->withInput()->with('errors', $this->validator->listErrors('list'));

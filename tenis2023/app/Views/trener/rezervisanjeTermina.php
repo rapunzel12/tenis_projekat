@@ -26,7 +26,7 @@ $this->section('content');
                   echo "</div>";
               }  
               
-              echo form_open("trener/addRezervisanjeTermina", ['method' => 'post']);
+              echo form_open("coach/addRezervisanjeTermina", ['method' => 'post']);
               echo form_label('Teren: ', 'teren');
               echo form_dropdown('teren', $tereni);
               echo '<br><br>';
@@ -38,10 +38,7 @@ $this->section('content');
               echo '<br>';
               
               // lista ucenika ili grupa
-              //echo form_label('Ucenici: ', 'ucenik', ['id'=>'lblUcenici']);
-              //echo form_dropdown('ucenik', , ['id'=>'ddUcenici'], 'class=dropdown');
-              echo form_dropdown('ucenik', $ucenici, '', ['id'=>'ddUcenici', 'class'=>'dropdown form-select']);
-              //echo form_label('Grupa: ', 'grupa', ['id'=>'lblGrupe']);
+              echo form_dropdown('ucenik', $ucenici, '', ['id'=>'ddUcenici', 'class'=>'dropdown form-select']);              
               echo form_dropdown('grupa', $grupe, '', ['id'=>'ddGrupe', 'class'=>'dropdown form-select']);
 
               echo '<br>';
