@@ -6,21 +6,21 @@
 <?= view("trener/trener_header.php")?>
 
 <div class="container">
-    <div class="row mt-5">        
-        <h2 class="text-center mb-5 mt-5">Trener meni</h2> 
+    <div class="row">        
+        <h2 class="text-center mb-5">Trener meni</h2> 
         
         <div class="col-sm-12 col-md-6 d-grid gap-2">       
-            <a href="zahtevi/zahteviUcenika" class="btn btn-outline-warning mb-3 p-3">Zahtevi od učenika <span class="badge rounded-pill text-bg-danger"> <?= $ukupnoZahtevaUcenika?></span></a>
-            <a href="zahtevi/zahteviRekreativaca" class="btn btn-outline-warning mb-3 p-3">Zahtevi rekreativaca za trening <span class="badge rounded-pill text-bg-danger"><?= $rezervacijaNaCekanju ?></span></a>
-            <a href="Coach/rezervisanjeTermina" class="btn btn-outline-danger mb-3 p-3 ">Rezervisanje termina sa učenicima</a>
-            <a href="Coach/pregledGrupnihTermina" class="btn btn-outline-info mb-3 p-3 disabled">Zakazani grupni termini - pregled <span class="badge rounded-pill text-bg-info">0</span></a></a>
-            <a href="Coach/pregledRezervacija" class="btn btn-outline-info mb-3 p-3 ">Zakazani individualni termini - pregled <span class="badge rounded-pill text-bg-info"><?= $ukupnoRezervacija ?></span></a></a>
+            <a href="<?= base_url('zahtevi/zahteviUcenika') ?>" class="btn btn-outline-warning mb-3 p-3">Zahtevi od učenika <span class="badge rounded-pill text-bg-danger"> <?= $ukupnoZahtevaUcenika?></span></a>
+            <a href="<?= base_url('zahtevi/zahteviRekreativaca') ?>" class="btn btn-outline-warning mb-3 p-3">Zahtevi rekreativaca za trening <span class="badge rounded-pill text-bg-danger"><?= $rezervacijaNaCekanju ?></span></a>
+            <a href="<?= base_url('Coach/rezervisanjeTermina') ?>" class="btn btn-outline-danger mb-3 p-3 ">Rezervisanje termina sa učenicima</a>
+            <a href="<?= base_url('Coach/pregledGrupnihTermina') ?>" class="btn btn-outline-info mb-3 p-3 disabled">Zakazani grupni termini - pregled <span class="badge rounded-pill text-bg-info">0</span></a></a>
+            <a href="<?= base_url('Coach/pregledRezervacija') ?>" class="btn btn-outline-info mb-3 p-3 ">Zakazani individualni termini - pregled <span class="badge rounded-pill text-bg-info"><?= $ukupnoRezervacija ?></span></a></a>
         </div>
         <div class="col-sm-12 col-md-6 d-grid gap-2">
-            <a href="coach/pregledGrupa" class="btn btn-outline-secondary mb-3 p-3">Grupe - pregled <span class="badge rounded-pill text-bg-secondary"><?= $ukupnoGrupa ?></span></a>
-            <a href="grupa/formaAddGrupa" class="btn btn-outline-secondary mb-3 p-3">Grupe - kreiranje</a>
-            <a href="Coach/pregledTerena" class="btn btn-outline-success mb-3 p-3">Tereni - pregled</a>
-            <a href="Coach/pregledTrenera" class="btn btn-outline-success mb-3 p-3">Treneri - pregled</a>
+            <a href="<?= base_url('coach/pregledGrupa') ?>" class="btn btn-outline-secondary mb-3 p-3">Grupe - pregled <span class="badge rounded-pill text-bg-secondary"><?= $ukupnoGrupa ?></span></a>
+            <a href="<?= base_url('grupa/formaAddGrupa') ?>" class="btn btn-outline-secondary mb-3 p-3">Grupe - kreiranje</a>
+            <a href="<?= base_url('Coach/pregledTerena') ?>" class="btn btn-outline-success mb-3 p-3">Tereni - pregled</a>
+            <a href="<?= base_url('Coach/pregledTrenera') ?>" class="btn btn-outline-success mb-3 p-3">Treneri - pregled</a>
             <a href="#trenerModal" class="btn btn-outline-dark mb-3 p-3" data-bs-toggle="modal" data-target="#trenerModal">Trener info</a>            
         </div>        
 
