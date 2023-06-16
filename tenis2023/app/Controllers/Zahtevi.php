@@ -73,7 +73,7 @@ class Zahtevi extends User
                 $poruka = "Zahtev je prihvaćen.";                
                 break;
             case 'cancel':
-                $zahtev->status = 'otk';
+                $zahtev->status = 'odb';
                 $zahtevModel->update($ucenik_id, $zahtev);
                 $poruka = "Zahtev je odbijen.";                
                 break;
