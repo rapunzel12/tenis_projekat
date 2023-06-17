@@ -5,10 +5,11 @@ $this->section('content');
 
 <?= helper('html'); ?>
 <?= view("trener/trener_header.php")?>
+<section class="page-section">
 <div class="container">    
         <h2 class='text-center'>Treneri</h2>
         <?php 
-            echo "<div class='row g-4'>";
+            echo "<div class='row g-4 mt-4'>";
             if (!empty($treneri))
             foreach ($treneri as $trener) {   
 
@@ -30,4 +31,5 @@ $this->section('content');
         ?>
     </div>
 </div>
+</section>
 <?= $this->endSection() ?>

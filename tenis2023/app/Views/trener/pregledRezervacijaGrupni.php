@@ -2,7 +2,6 @@
     $this->extend('layout');
     $this->section('content');
 ?>
-<?= view("trener/trener_header.php")?>
 <section class="page-section">
 <div class="container">
     <div class="row">
@@ -16,17 +15,17 @@
         
         
 
-        echo "<h2 class='text-center'>Zakazani termini sa učenicima i rekreativcima</h2>";    
+        echo "<h2 class='text-center'>Zakazani grupni termini</h2>";    
         
         if (!empty($rezervacije))
         {
-            echo form_open('Coach/pregledRezervacija', ['method' =>'get']);            
+            echo form_open('Coach/pregledRezervacijaGrupni', ['method' =>'get']);            
             
             $status = ['' => '', 'rez' => 'Rezervisan', 'otk' => 'Otkazan'];        
             echo form_label('Filter status:', 'status');
             echo form_dropdown('status', $status, $_GET['status']??"");
             echo form_submit('search', 'Prikaži', ['class'=> 'btn btn-primary']);
-            if (isset($_GET['status'])) echo "<a href='pregledRezervacija' class='btn btn-primary'>Reset</a>";
+            if (isset($_GET['status'])) echo "<a href='pregledRezervacijaGrupni' class='btn btn-primary'>Reset</a>";
             echo form_close();
             echo "<br><br>";
 
@@ -36,8 +35,8 @@
                 <tr>
                     <th class='text-center'>Datum</th>
                     <th class='text-center'>Vreme</th>                    
-                    <th class='text-center'>Ime i prezime</th>            
-                    <th class='text-center'>Broj reketa</th>                     
+                    <th class='text-center'>Naziv grupe</th>            
+                    <th class='text-center'>Broj reketa</th> 
                     <th class='text-center'>Teren</th>                   
                     <th class='text-center'>Status</th>
                     <th class='text-center'>Otkaži</th>
@@ -51,8 +50,9 @@
                 if (isset($_GET['status']) and !empty($_GET['status']) and $rezervacija->status != $_GET['status']) continue;
                     echo "<tr>";
                     echo "<td>".$rezervacija->datum."</td>";
-                    echo "<td>".$rezervacija->vreme."</td>";                    
-                    echo "<td>".img('assets/img/users/'.$rezervacija->poster, false, ['width' => '40', 'class' => 'center img-fluid'])." ".$rezervacija->ime." ".$rezervacija->prezime."</td>";                
+                    echo "<td>".$rezervacija->vreme."</td>";                   
+                    echo "<td class='text-center'>".$rezervacija->naziv."</td>";
+                    
                     echo "<td class='text-center'>".$rezervacija->brrek."</td>";                    
                     switch ($rezervacija->tippod) {
                         case 'S':
@@ -65,7 +65,7 @@
                             $rezervacija->tippod = "Beton";
                             break;
                     }               
-                    echo "<td class='text-center'>Teren br".$rezervacija->idteren." ".$rezervacija->tippod."</td>";  
+                    echo "<td class='text-center'>Teren ".$rezervacija->tippod."</td>";  
                     switch ($rezervacija->status) {
                         case 'slo':
                             $rezervacija->status= "Slobodan";
@@ -87,10 +87,10 @@
                     if ($rezervacija->status == 'Otkazan') 
                     {
                         echo "<td class='text-center'><i class=\"fa-solid fa-square-xmark fa-2xl\" style=\"color: #f1f1f1;\" title=\"Otkaži\"></i></td>";
-                        echo "<td class='text-center'>".anchor('Coach/obrisiRezervaciju/'.$rezervacija->idrez, '<i class="fa-solid fa-trash-can fa-2xl" style="color: #ad0123;" title="Obriši"></i>')."</td>";
+                        echo "<td class='text-center'>".anchor('Coach/rezervacijaGrupa/obrisi/'.$rezervacija->idrez, '<i class="fa-solid fa-trash-can fa-2xl" style="color: #ad0123;" title="Obriši"></i>')."</td>";
                     }
                     else {
-                        echo "<td class='text-center'>".anchor('Coach/otkaziRezervaciju/'.$rezervacija->idrez, '<i class="fa-solid fa-square-xmark fa-2xl" style="color: ##ffc800;" title="Otkaži"></i>')."</td>";
+                        echo "<td class='text-center'>".anchor('Coach/rezervacijaGrupa/otkazi/'.$rezervacija->idrez, '<i class="fa-solid fa-square-xmark fa-2xl" style="color: ##ffc800;" title="Otkaži"></i>')."</td>";
                         echo "<td class='text-center'><i class=\"fa-solid fa-trash-can fa-2xl\" style=\"color: #f1f1f1;\" title=\"Obriši\"></i></td>";
                     }   
                                     

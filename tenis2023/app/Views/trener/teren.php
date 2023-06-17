@@ -4,9 +4,10 @@ $this->section('content');
 ?>
 <?= helper('html'); ?>
 <?= view("trener/trener_header.php")?>
+<section class="page-section">
 <h2 class='text-center'>Pregled svih terena</h2>
 <div class="container"> 
-    <div class='row g-4'>
+    <div class='row g-4 mt-4'>
         <?php 
 
             
@@ -40,4 +41,5 @@ $this->section('content');
         ?>
 </div>
 </div>
+</section>
 <?= $this->endSection() ?>

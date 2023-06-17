@@ -4,6 +4,7 @@ $this->extend('layout');
 $this->section('content');
 ?>
 <?= view("trener/trener_header.php")?>
+<section class="page-section">
 <div class="container">
     <?php 
         $session = \Config\Services::session();
@@ -57,16 +58,5 @@ $this->section('content');
         
         ?>
     </div>
+        </section>
 <?= $this->endSection() ?>
-
-
-
-
-                            
-                                <div class="portfolio-hover">
-                                    
-                                    <div class="portfolio-caption">
-                                        <div class="portfolio-caption-heading">Threads</div>
-                                        <div class="portfolio-caption-subheading text-muted">Illustration</div>
-                                    </div>
-                                </div>

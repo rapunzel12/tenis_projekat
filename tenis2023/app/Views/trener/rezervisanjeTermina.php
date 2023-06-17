@@ -9,6 +9,7 @@ $this->section('content');
     }
   </style>
 <?= view("trener/trener_header.php")?>
+<section class="page-section">
 <h2 class='text-center'>Rezervisanje termina</h2>
 <div class="container"> 
     <div class='row g-4'>
@@ -39,7 +40,8 @@ $this->section('content');
               
               // lista ucenika ili grupa
               echo form_dropdown('ucenik', $ucenici, '', ['id'=>'ddUcenici', 'class'=>'dropdown form-select']);              
-              echo form_dropdown('grupa', $grupe, '', ['id'=>'ddGrupe', 'class'=>'dropdown form-select']);
+              echo form_dropdown('grupa', $grupe, '', ['id'=>'ddGrupe', 'class'=>'dropdown form-select']);             
+              
 
               echo '<br>';
               echo form_label('Broj reketa: ', 'brreketa');              
@@ -61,7 +63,7 @@ $this->section('content');
       ?>
       </div>
 </div>
-
+</section>
 <script>    
     const grupni = document.querySelector('input[value="grupni"]');
     const individualni = document.querySelector('input[value="individualni"]');

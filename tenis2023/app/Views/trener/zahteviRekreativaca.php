@@ -3,6 +3,7 @@
     $this->section('content');
 ?>
 <?= view("trener/trener_header.php")?>
+<section class="page-section">
 <div class="container">
     <div class="row">
     <?php 
@@ -110,5 +111,5 @@
     ?>
     </div>
 </div>
-
+</section>
 <?= $this->endSection() ?>

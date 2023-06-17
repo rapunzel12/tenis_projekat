@@ -3,6 +3,7 @@
     $this->section('content');
 ?>
 <?= view("trener/trener_header.php")?>
+<section class="page-section">
     <div class="container">
         <div class="row">
             <?php 
@@ -16,7 +17,7 @@
                 
                 
 
-                echo "<h2 class='text-center'>Zahtevi učenika</h2>";    
+                echo "<h2 class='text-center'>Zahtevi od učenika</h2>";    
                 
                 if (!empty($zahteviUcenika))
                 {
@@ -82,4 +83,5 @@
             ?>
         </div>
     </div>
+</section>
 <?= $this->endSection() ?>

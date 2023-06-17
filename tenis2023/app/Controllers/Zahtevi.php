@@ -28,13 +28,12 @@ class Zahtevi extends User
 
     public function obrisiZahtevRekreativca($id)
     {
-
         $rezervacijaModel = new RezervacijaModel();  
-        $idTermina = $rezervacijaModel->find($id)->idtermin;            
-        $rezervacijaModel->delete($id);       
+        $idTermina = $rezervacijaModel->find($id)->idtermin;
+        $rezervacijaModel->delete($id);
 
         $terminModel = new TerminModel();
-        $terminModel->delete($idTermina);
+        $terminModel->delete($idTermina);        
         
         return redirect()->to('zahtevi/zahteviRekreativaca')->with("msg", 'Zahtev je obrisan.');        
     }
