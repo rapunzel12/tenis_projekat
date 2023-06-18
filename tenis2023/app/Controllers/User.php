@@ -14,7 +14,7 @@ class User extends Main
         $name = $user->korime; 
         if($user->tip == 0) {
         
-            return view('member', ['name'=> $name, 'user'=>$user]);
+            return view('my', ['name'=> $name, 'user'=>$user]);
         }
         if($user->tip == 1) {
         

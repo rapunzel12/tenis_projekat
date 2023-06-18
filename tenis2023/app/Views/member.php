@@ -4,18 +4,19 @@
 
 $this->extend('layout');
 $this->section('content');
+var_dump($tereni,$treneri);
 ?>
 
   <div class="container rezervacija" style="margin-top:170px;">
     <h1 style="text-align:center;">Резервација тениског терена</h1>
-    <form action="<?=site_url("Member/rezervacija") ?>" method="POST">
+    <form action="<?=site_url("Rezervacija/rezervisi") ?>" method="POST">
       <div class="row row-cols-1 row-cols-md-3 g-4" style="margin:10% 5% 10% 5%;">
         <input type="radio" id="sljaka" name="tip_terena" value="sljaka" style="display:none">
         <label for="sljaka" class="col">
           <div class="card h-100">
-            <img src="../assets/img/slike/slika6.jpg" class="card-img-top" alt="...">
+            <img src="<?= base_url("assets/img/slike/slika6.jpg") ?>" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
+              <h5 class="card-title">Šljaka</h5>
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             </div>
           
@@ -24,9 +25,9 @@ $this->section('content');
         <input type="radio" id="trava" name="tip_terena" value="trava" style="display:none">
         <label for="trava" class="col">
           <div class="card h-100">
-            <img src="../assets/img/slike/slika6.jpg" class="card-img-top" alt="...">
+            <img src="<?= base_url("assets/img/slike/beton.jpg") ?>" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
+              <h5 class="card-title">Trava</h5>
               <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
             </div>
           
@@ -35,9 +36,9 @@ $this->section('content');
         <input type="radio" id="beton" name="tip_terena" value="beton" style="display:none">
         <label for="beton" class="col">
           <div class="card h-100">
-            <img src="../assets/img/slike/slika6.jpg" class="card-img-top" alt="...">
+            <img src="<?= base_url("assets/img/slike/beton.jpg") ?>" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
+              <h5 class="card-title">Beton</h5>
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
             </div>
         
@@ -55,9 +56,10 @@ $this->section('content');
       <div class="form-group">
         <label for="teren">Терен:</label>
         <select class="form-control" id="teren" name="teren" required>
-          <option value="Терен 1">Терен 1</option>
-          <option value="Терен 2">Терен 2</option>
-          <option value="Терен 3">Терен 3</option>
+          <?php
+          foreach($tereni as $teren){?>
+            <option value="<?php echo $teren->idteren ?>"><?php echo $teren->poster_vertical ?></option>
+          <?php } ?>
         </select>
       </div>
       <div class="form-group">
@@ -67,10 +69,10 @@ $this->section('content');
       <div class="form-group">
         <label for="trener">Тренер:</label>
         <select class="form-control" id="trener" name="trener">
-          <option value="">Нема тренера</option>
-          <option value="Тренер 1">Тренер 1</option>
-          <option value="Тренер 2">Тренер 2</option>
-          <option value="Тренер 3">Тренер 3</option>
+        <?php
+          foreach($treneri as $trener){?>
+            <option value="<?php echo $trener->idkor ?>"><?php echo $trener->opis ?></option>
+          <?php } ?>
         </select>
       </div>
       <button type="submit" class="btn btn-primary">Резервиши</button>

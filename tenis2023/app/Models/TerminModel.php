@@ -6,6 +6,7 @@ use CodeIgniter\Model;
 
 class TerminModel extends Model
 {
+
     protected $table = 'termin';
     protected $primaryKey = 'idtermin';
     
