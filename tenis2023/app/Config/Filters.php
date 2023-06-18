@@ -16,9 +16,8 @@ use App\Filters\MemberFilter;
 use App\Filters\StudentFilter;
 use App\Filters\CoachFilter;
 
+// use App\Config\TrimFilter;
 
-//use App\Filters\AdminFilter;
-//use App\Filters\LoginFilter;
 class Filters extends BaseConfig
 {
     /**
@@ -39,6 +38,7 @@ class Filters extends BaseConfig
         'member'=> MemberFilter::class,
         'coach'=> CoachFilter::class,
         
+        'trim' =>TrimFilter::class,
         //'login'=>LoginFilter::class,
         //'register'=>RegisterFilter::class,
         //'admin'=>AdminFilter::class
@@ -73,8 +73,9 @@ class Filters extends BaseConfig
      * permits any HTTP method to access a controller. Accessing the controller
      * with a method you don’t expect could bypass the filter.
      */
-    public array $methods = [];
-
+    public array $methods = [
+        // 'post' => ['trim'],
+    ];
     /**
      * List of filter aliases that should run on any
      * before or after URI patterns.

@@ -1,7 +1,7 @@
 <?php
 
 $this->extend('layout');
-// this->extend('user');
+
 $this->section('content');
 
 ?>
@@ -35,7 +35,7 @@ $this->section('content');
 
                 <label for="court_description" class="form-label">Uneti kratak opis teniskog terena:</label>
                 <textarea row="4" class="form-control" name="court_description" 
-                placeholder="Opis teniskog terena do 1024 karaktera..."><?= set_value("court_description") ?></textarea>
+                placeholder="Opis teniskog terena do 600 karaktera..."><?= set_value("court_description") ?></textarea>
                 <br />
 
                 <label for="poster_vertical" class="form-label">Fotografija dimenzija 200 x 200...</label>
@@ -43,10 +43,13 @@ $this->section('content');
                 <br />
 
                 <button type="submit" class="btn btn-primary">Uneti novi teniski teren</button>
-
+                <br>
+                <br>
+                <br>
             </form>
         </div>
-
+    </div>
+</div>
 
         <?php
         $this->endSection();

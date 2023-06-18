@@ -1,7 +1,6 @@
 <?php
 
 $this->extend('layout');
-// this->extend('user');
 $this->section('content');
 
 ?>
@@ -31,11 +30,15 @@ $this->section('content');
                 <br />
 
                 <button type="submit" class="btn btn-primary">Uneti novu ponudu</button>
-
+                <br>
+                <br>
+                <br>
             </form>
         </div>
+    </div>
+</div>
 
 
-        <?php
-        $this->endSection();
-        ?>
+<?php
+$this->endSection();
+?>

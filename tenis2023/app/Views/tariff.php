@@ -12,7 +12,7 @@ $this->section('content');
             <br>
             <br>
             <br>
-           
+
             <br>
             <h2 class="section-heading text-uppercase">Cenovnik kluba</h2>
             <br>
@@ -22,43 +22,44 @@ $this->section('content');
 
 
             ?>
-                    <div>
-                        <table class="table table-hover table-striped table-bordered" border="1" cellpadding="2" cellspacing="1">
+                <div>
+                    <table class="table table-hover table-striped table-bordered" border="1" cellpadding="2" cellspacing="1">
+                        <tr>
+                            <th>Redni broj</th>
+                            <th>Naziv usluge</th>
+                            <th>Cena usluge</th>
+                        </tr>
+                        <?php
+                        $rb = 1;
+                        foreach ($tariffs as $tariff) { ?>
                             <tr>
-                                <th>Redni broj</th>
-                                <th>Naziv usluge</th>
-                                <th>Cena usluge</th>
-                            </tr>
-                            <?php 
-                            $rb = 1;
-                            foreach ($tariffs as $tariff) { ?>
-                                <tr>
-                                    <td><?php 
-                                    echo $rb . ". "; 
+                                <td><?php
+                                    echo $rb . ". ";
                                     $rb++;
                                     ?></td>
-                                    <td><?= $tariff->naziv ?></td>
-                                    <td><?= $tariff->ukupno. ",00 RSD" ?></td>
-                                </tr>
+                                <td><?= $tariff->naziv ?></td>
+                                <td><?= $tariff->ukupno . ",00 RSD" ?></td>
+                            </tr>
 
-                            <?php
-                            }
-                            ?>
+                        <?php
+                        }
+                        ?>
 
-                        </table>
+                    </table>
                 <?php
-                }
-            
+            }
+
                 ?>
-                    </div>
+                </div>
 
-                    <br>
-
-
+                <br>
+                <br>
+                <br>
         </div>
-
-
     </div>
+
+
+</div>
 
 
 

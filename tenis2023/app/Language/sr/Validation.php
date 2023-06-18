@@ -8,6 +8,8 @@ return [
 // spisak pravila koja ja hocu da koristim napisati ovde
 
     // Rule Messages
+    'alpha'                 => ' {field} može da sadrži samo znakove alfabeta.',
+    'alpha_space'           => 'The {field} field may only contain alphabetical characters and spaces.',
     'required'              => ' {field} je obavezno polje.',
     'valid_email'           => ' {field} mora da sadrži validnu e-mail adresu.',
     'integer'               => ' {field} mora da sadrži brojeve.',

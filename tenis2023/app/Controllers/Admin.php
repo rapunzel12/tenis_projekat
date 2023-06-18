@@ -11,7 +11,7 @@ class Admin extends User
     // funkcija koja nas salje na view u kom se pretrazuju korisnici prema tipu zahteva - radi
     public function searchUsers()
     {
-        return view('admin\search_users');
+        return view('admin/search_users');
     }
     
     // funkcija koja generise tabelu nakon pretrage prema statusu korisnika  - radi
@@ -22,22 +22,34 @@ class Admin extends User
         }
         $userModel = new UserModel();
         $users = $userModel->getUsers($this->request->getVar('status'));
-        return view('admin\show_user_status', ['users'=>$users]);
+        return view('admin/show_user_status', ['users'=>$users]);
     }
-    
+
+    // OVA FUNKCIJA RADI, UPISUJE U BAZU SVE STO TREBA, ALI NE VRACA DOBAR VIEW - TU JE GRESKA
     public function updateUser($idkor, $status)
     {
         $userModel = new UserModel();
         $oldStatus=$userModel->find($idkor)->status;
-        $userModel->update($idkor, ['status' => (string)$status]);
-        //var_dump($status);
+        $userModel->update($idkor, ['status' => (integer)$status]);
         $users = $userModel->getUsers($oldStatus);
-        return view("admin\show_user_status", ['users'=>$users]);
+        // var_dump($users);
+        return view("admin/show_user_status", ['users'=>$users]);
     }
-
+    
+    /* public function updateUser($idkor, $status)
+    {
+        $userModel = new UserModel();
+        $oldStatus=$userModel->find($idkor)->status;
+        $userModel->update($idkor, ['status' => $status]);
+        // var_dump($status);
+        $users = $userModel->getUsers($oldStatus); // problem je u ovoj liniji
+        return view("admin/show_user_status", ['users'=>$users]);
+    }
+    */
+  
     // funkcija koja nas vodi na view na kom se nalazi forma za insertovanje novog terena
     public function insertCourts(){
-        return view('admin\insert_courts');
+        return view('admin/insert_courts');
     }
 
     // funkcije koje se odnose na dodavanje terena 
@@ -74,7 +86,7 @@ class Admin extends User
         $court = ['poster_vertical' => $posterVerticalName];
         $courtModel->update($courtId, $court);
         session()->setFlashdata('msg','Uspešno ste dodali novi teniski teren');
-        return view("admin\insert_courts");
+        return view("admin/insert_courts");
     }
 
     // funkcija koja nas vodi na formu za pretragu terena
@@ -91,10 +103,9 @@ class Admin extends User
         $courtModel =  new CourtModel();
         $courts = $courtModel->builder()->select('idteren, tippod, opis'); // ne radi bez buildera
         $courts = $courtModel->getCourts($this->request->getVar('court_type')); // prosledjivanje samo jednog parametra, po cemu i pretrazujemo
-        return view ('admin\show_courts', ['courts'=>$courts]);
+        return view ('admin/show_courts', ['courts'=>$courts]);
     }
-
-    // NE VRACA MI DOBAR VIEW, ALI BRISE U BAZI
+/*
     public function deleteCourts($idteren)
     {
         $courtModel =  new CourtModel();
@@ -103,10 +114,20 @@ class Admin extends User
         $courts = $courtModel->getCourts($tippod);     
         return view('admin/show_courts', ['courts'=>$courts]);
     }
+*/
+    // RELATIVNO OK, NE VRACA SVE IZLISTANE VEC POSTOJECE TERENE
+    public function deleteCourts($idteren)
+    {
+        $courtModel =  new CourtModel();
+        $tippod= $courtModel->find($idteren)->tippod;        
+        $courtModel->delete($idteren);
+        $courts = $courtModel->getCourts($idteren, $tippod);     
+        return view('admin/show_courts', ['courts'=>$courts]);
+    }
 
     public function tariff()
     {
-        return view('admin\insert_new_tariff');
+        return view('admin/insert_new_tariff');
     }
 
     public function addTariff()
@@ -126,7 +147,7 @@ class Admin extends User
         $tariffModel = new TariffModel();
         $tariffs = $tariffModel->insert($tariff);
         session()->setFlashdata('msg','Uspešno ste dodali novu ponudu');
-        return view("admin\insert_new_tariff", ['tariffs'=>$tariffs]);
+        return view("admin/insert_new_tariff", ['tariffs'=>$tariffs]);
     }
 
     // funkcija koja nas vodi na pogled gde se izlistava cenovnik kluba
@@ -134,17 +155,16 @@ class Admin extends User
         $tariffModel = new TariffModel();
         $tariffs = $tariffModel->builder()
             ->select("idcena, naziv, ukupno")->get()->getResult();
-        return view('admin\change_tariff', ['tariffs'=>$tariffs]);
+        return view('admin/change_tariff', ['tariffs'=>$tariffs]);
     }
 
     // NE VRACA MI DOBAR VIEW, ALI BRISE U BAZI
     public function deletePrice($idcena)
     {
         $tariffModel = new TariffModel();
-        $oldTariff=$tariffModel->find($idcena);
         $tariffModel->delete($idcena);
-        $tariffs = $tariffModel->getTariffs($idcena);
-        // PROBLEM: NE ZNAM NA STA DA SE REDIREKTUJEM
-        return view('admin\change_tariff', ['tariffs'=>$tariffs]);
+        $tariffs = $tariffModel->select("idcena, naziv, ukupno")->get()->getResult();  
+        return view('admin/change_tariff', ['tariffs'=>$tariffs]);
+        
     }
 }

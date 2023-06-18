@@ -19,23 +19,18 @@ $this->section('content');
             <h4><?= $session->getFlashdata('errors') ?></h4>
             <br>
             <?php if (isset($courts)) {
+                //if (count($courts) == 0) {
                 if (sizeof($courts) == 0) {
-                    echo "Nema rezultata pretrage";
+                    echo "<h4>";
+                    echo "Nema rezultata pretrage.";
+                    echo "</h4>";
                 } else {
-                $court = $courts[0];
-                if ($court['tippod'] == 0) {
-                    echo "Tip terena - šljaka";
+                    $court = $courts[0];
                 }
-                if ($court['tippod'] == 1) {
-                    echo "Tip terena - trava";
-                }
-                if ($court['tippod'] == 2) {
-                    echo "Tip terena - beton";
-                }
-            }
             ?>
                 <div>
                     <table class="table table-hover table-striped table-bordered" border="1" cellpadding="2" cellspacing="1">
+
                         <tr>
                             <th>Redni broj</th>
                             <th>Tip podloge</th>
@@ -65,6 +60,7 @@ $this->section('content');
                             </tr>
 
                         <?php
+
                         }
                         ?>
 
@@ -75,13 +71,11 @@ $this->section('content');
                 </div>
 
                 <br>
-
-
+                <br>
+                <br>
         </div>
-
-
     </div>
-
-    <?php
-    $this->endSection();
-    ?>
+</div>
+<?php
+$this->endSection();
+?>

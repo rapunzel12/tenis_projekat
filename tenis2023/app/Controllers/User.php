@@ -13,7 +13,7 @@ class User extends Main
         $user = $this->session->get("user");
         $name = $user->korime; 
         if($user->tip == 0) {
-        
+            
             return view('member', ['name'=> $name, 'user'=>$user]);
         }
         if($user->tip == 1) {

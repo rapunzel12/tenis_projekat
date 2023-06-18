@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controllers;
 
 use App\Models\AdminModel;
@@ -32,17 +31,19 @@ class Main extends BaseController
     }
     
     public function price(){
-        // dodati kod za prikazivanje spiska cena
         $tariffModel = new TariffModel();
         $tariffs = $tariffModel->findAll();
-        // var_dump($tariffs);
         return view('tariff', ['tariffs'=>$tariffs]);
     }
 
     public function viewAdmins(){
         
-        $userModel = new UserModel();
-        $users= $userModel->where('tip', '3')->findAll();
+        $userModel = new UserModel(); 
+        $users= $userModel->select('korisnik.idkor, administrator.idkor, opis') 
+        ->where('korisnik.idkor = administrator.idkor');
+        // ->where('tip', '3')->findAll();
+        //->get()
+        //->getResult();
         return view('admins', ['users'=>$users]);
     }
 

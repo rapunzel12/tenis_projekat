@@ -34,8 +34,7 @@ $this->section('content');
                 alt="..." width="200px">  
             
             
-            <?php 
-        //}?>
+        </div>
     </div>
 </div>
    

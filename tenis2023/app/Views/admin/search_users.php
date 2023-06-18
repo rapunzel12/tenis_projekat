@@ -1,7 +1,7 @@
 <?php
 
 $this->extend('layout');
-// this->extend('user');
+
 $this->section('content');
 
 ?>
@@ -35,6 +35,9 @@ $this->section('content');
                 <br>
 
                 <button type="submit" class="btn btn-primary">Pretraga</button>
+                <br>
+                <br>
+                <br>
             </form>
         </div>
 

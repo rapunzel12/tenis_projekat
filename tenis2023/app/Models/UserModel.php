@@ -13,15 +13,14 @@ class UserModel extends Model
 
     protected $returnType     = 'object';
 
-    protected $allowedFields = ['korime', 'pass', 'ime','prezime', 'brtel', 'poster', 'email', 'status', 'tip'];
+    protected $allowedFields = ['korime', 'pass', 'ime', 'prezime', 'brtel', 'poster', 'email', 'status', 'tip'];
 
-    public function getUsers($status) 
+    public function getUsers($status)
     {
-        $builder = $this->builder();
-         if(isset($status) && $status != 4)
-            $builder->where('status', $status);
-            $builder->select('idkor, korime, pass, ime, prezime, brtel, email, status, tip');
-        return $builder->get()->getResultArray();
+        // $builder = $this->builder(); // visak
+        if (isset($status) && $status != 4)
+            return $this->where('status', $status)->get()->getResultArray();
+        // $builder->select('idkor, korime, pass, ime, prezime, brtel, email, status, tip');
+
     }
 }
-

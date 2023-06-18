@@ -20,13 +20,11 @@ class Guest extends Main
     public function register()
     {
         if(!$this->validate([
-            'name' =>['label'=>'Ime', 'rules'=> 'required|min_length[3]|max_length[25]'], //|regex_match[/regex/]', // prvo slovo velikim slovom
-            'lastname' =>['label'=>'Prezime', 'rules' => 'required|min_length[3]|max_length[35]'], //|regex_match[/regex/]', // prvo slovo velikim slovom
+            'name' =>['label'=>'Ime', 'rules'=> 'required|alpha|min_length[3]|max_length[25]'], //|regex_match[/regex/]', // prvo slovo velikim slovom
+            'lastname' =>['label'=>'Prezime', 'rules' => 'required|alpha_space|min_length[3]|max_length[35]'], //|regex_match[/regex/]', // prvo slovo velikim slovom
             'username' =>['label'=>'Korisničko ime', 'rules' => 'required|is_unique[korisnik.korime]|min_length[3]|max_length[15]'],
-            // Koja je fora? prhihvata sve sifre bez obzira na to da li maju slova, 
-            // bojeve i znake za interpunkciju
-            'password' =>['label'=>'Šifra', 'rules' => 'required|alpha_numeric_punct|min_length[8]|max_length[15]'], // alpha_numeric radi, ali ne ono sto sam ja zelela
-            'passconf' => ['label'=>'Ponovljena šifra', 'rules' => 'required|matches[password]'], // ova provera radi
+            'password' =>['label'=>'Šifra', 'rules' => 'required|min_length[8]|max_length[15]'], 
+            'passconf' => ['label'=>'Ponovljena šifra', 'rules' => 'required|matches[password]'],
             'email' =>['label'=>'E-mail', 'rules' => 'required|valid_email'],
             'tel' =>['label'=>'Telefon', 'rules' => 'required|integer|max_length[15]'],
             'user_type' =>['label'=>'Tip korisnika', 'rules' => 'required'],
@@ -85,6 +83,7 @@ class Guest extends Main
             $adminModel = new AdminModel();
             $adminModel->insert([
                 'idkor' => $userId,
+                'opis' => $this->request->getPost('description'),
             ]);
         } 
         // nakon upisivanja korisnika u bazu moram da uradi update i da dodam sliku koja ce autoinkrementom da dobije svoj naziv
@@ -133,7 +132,7 @@ class Guest extends Main
         // var_dump($user[0]);
         if ($users == null || count($users)==0) {  // provera da li postoji korisnik kojeg smo zadali, 
             // prihvata sve podatke iako mozda takvi korisnici ne postoje u bazi
-            return redirect()->back()->withInput() // cuvaju se svi inputi koji su vec uneti
+            return redirect()->back()->withInput()
                 ->with('errors', "Korisnik ne postoji." );
         } 
         
