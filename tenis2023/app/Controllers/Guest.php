@@ -143,7 +143,7 @@ class Guest extends Main
         
         if($user->tip == 0) {
         
-            return redirect()->to('Member'); 
+            return redirect()->to('User/index'); 
         }
         if($user->tip == 1) {
         

@@ -1,28 +1,29 @@
 <?php
     $this->extend('layout');
-    $this->section('content');
+    $this->section('content');     
 ?>
 
 <?= view("trener/trener_header.php")?>
-
+<section class="page-section">
 <div class="container">
-    <div class="row">
-        <h3 class="text-center mb-4">Trener meni</h3> 
+    <div class="row">        
+        <h2 class="text-center mb-5">Trener meni</h2> 
+        
         <div class="col-sm-12 col-md-6 d-grid gap-2">       
-            <a href="zahtevi/zahteviUcenika" class="btn btn-outline-warning mb-3 p-3">Zahtevi od učenika <span class="badge rounded-pill text-bg-danger"> <?= $ukupnoZahtevaUcenika?></span></a>
-            <a href="zahtevi/zahteviRekreativaca" class="btn btn-outline-warning mb-3 p-3">Zahtevi rekreativaca za trening <span class="badge rounded-pill text-bg-danger"><?= $rezervacijaNaCekanju ?></span></a>
-            <a href="coach/rezervisanjeTermina" class="btn btn-outline-danger mb-3 p-3 disabled">Rezervisanje termina sa učenicima</a>
-            <a href="coach/pregledGrupnihTermina" class="btn btn-outline-info mb-3 p-3 disabled">Zakazani grupni termini - pregled <span class="badge rounded-pill text-bg-info"><?= $rezervacijaNaCekanju ?></span></a></a>
-            <a href="coach/pregledIndividualnihTermina" class="btn btn-outline-info mb-3 p-3 disabled">Zakazani individualni termini - pregled <span class="badge rounded-pill text-bg-info"><?= $rezervacijaNaCekanju ?></span></a></a>
+            <a href="<?= base_url('zahtevi/zahteviUcenika') ?>" class="btn btn-outline-warning mb-3 p-3">Zahtevi od učenika <span class="badge rounded-pill text-bg-danger"> <?= $ukupnoZahtevaUcenika?></span></a>
+            <a href="<?= base_url('zahtevi/zahteviRekreativaca') ?>" class="btn btn-outline-warning mb-3 p-3">Zahtevi rekreativaca za trening <span class="badge rounded-pill text-bg-danger"><?= $rezervacijaNaCekanju ?></span></a>
+            <a href="<?= base_url('Coach/rezervisanjeTermina') ?>" class="btn btn-outline-danger mb-3 p-3">Rezervisanje termina sa učenicima</a>
+            <a href="<?= base_url('Coach/pregledRezervacijaGrupni') ?>" class="btn btn-outline-info mb-3 p-3">Zakazani grupni termini - pregled <span class="badge rounded-pill text-bg-info"><?= $ukupnoRezervacijaGrupni ?></span></a></a>
+            <a href="<?= base_url('Coach/pregledRezervacija') ?>" class="btn btn-outline-info mb-3 p-3">Zakazani individualni termini - pregled <span class="badge rounded-pill text-bg-info"><?= $ukupnoRezervacija ?></span></a></a>
         </div>
         <div class="col-sm-12 col-md-6 d-grid gap-2">
-            <a href="coach/pregledGrupa" class="btn btn-outline-secondary mb-3 p-3">Grupe - pregled <span class="badge rounded-pill text-bg-secondary"><?= $ukupnoGrupa ?></span></a>
-            <a href="grupa/formaAddGrupa" class="btn btn-outline-secondary mb-3 p-3">Grupe - kreiranje</a>
-            <a href="coach/pregledTerena" class="btn btn-outline-success mb-3 p-3">Tereni - pregled</a>
-            <a href="coach/pregledTrenera" class="btn btn-outline-success mb-3 p-3">Treneri - pregled</a>
-            <a href="#trenerModal" class="btn btn-outline-dark mb-3 p-3" data-bs-toggle="modal" data-target="#trenerModal">Trener info</a>            
+            <a href="<?= base_url('coach/pregledGrupa') ?>" class="btn btn-outline-secondary mb-3 p-3">Grupe - pregled <span class="badge rounded-pill text-bg-secondary"><?= $ukupnoGrupa ?></span></a>
+            <a href="<?= base_url('grupa/formaAddGrupa') ?>" class="btn btn-outline-secondary mb-3 p-3">Grupe - kreiranje</a>
+            <a href="<?= base_url('Coach/pregledTerena') ?>" class="btn btn-outline-success mb-3 p-3">Svi tereni - pregled</a>
+            <a href="<?= base_url('Coach/pregledTrenera') ?>" class="btn btn-outline-success mb-3 p-3">Svi treneri - pregled</a>
+            <a href="#trenerModal" class="btn btn-outline-dark mb-3 p-3" data-bs-toggle="modal" data-target="#trenerModal">Moji podaci - pregled</a>            
         </div>        
-        
+
         
     </div>
 </div>
@@ -31,7 +32,7 @@
     <div class="portfolio-modal modal fade" id="trenerModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                <div class="close-modal" data-bs-dismiss="modal"><img src="<?= base_url('assets/img/close-icon.svg')?>" alt="Close modal" /></div>
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
@@ -64,7 +65,7 @@
             </div>
         </div>
     </div>
-
+</section>
 
 
 <?= $this->endSection() ?>

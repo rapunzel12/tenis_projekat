@@ -5,6 +5,7 @@ use App\Models\AdminModel;
 use App\Models\CourtModel;
 use App\Models\TariffModel;
 use App\Models\UserModel;
+use App\Models\CoachModel;
 
 class Main extends BaseController
 {
@@ -27,7 +28,14 @@ class Main extends BaseController
         return view('tenis_courts_types', ['courts'=>$courts]);
     }
     public function viewTenisCoaches(){
-        return view('tenis_coaches');
+
+        $trenerModel = new CoachModel();                
+        $treneri = $trenerModel
+        ->join('korisnik', 'korisnik.idkor = trener.idkor')
+        ->where("korisnik.idkor = trener.idkor")
+        ->findAll();
+         
+        return view('tenis_coaches', ["treneri" => $treneri]);
     }
     
     public function price(){
