@@ -9,6 +9,7 @@ $this->section('content');
     }
   </style>
 <?= view("trener/trener_header.php")?>
+<section class="page-section">
 <h2 class='text-center'>Rezervisanje termina</h2>
 <div class="container"> 
     <div class='row g-4'>
@@ -26,7 +27,7 @@ $this->section('content');
                   echo "</div>";
               }  
               
-              echo form_open("trener/addRezervisanjeTermina", ['method' => 'post']);
+              echo form_open("coach/addRezervisanjeTermina", ['method' => 'post']);
               echo form_label('Teren: ', 'teren');
               echo form_dropdown('teren', $tereni);
               echo '<br><br>';
@@ -38,11 +39,9 @@ $this->section('content');
               echo '<br>';
               
               // lista ucenika ili grupa
-              //echo form_label('Ucenici: ', 'ucenik', ['id'=>'lblUcenici']);
-              //echo form_dropdown('ucenik', , ['id'=>'ddUcenici'], 'class=dropdown');
-              echo form_dropdown('ucenik', $ucenici, '', ['id'=>'ddUcenici', 'class'=>'dropdown form-select']);
-              //echo form_label('Grupa: ', 'grupa', ['id'=>'lblGrupe']);
-              echo form_dropdown('grupa', $grupe, '', ['id'=>'ddGrupe', 'class'=>'dropdown form-select']);
+              echo form_dropdown('ucenik', $ucenici, '', ['id'=>'ddUcenici', 'class'=>'dropdown form-select']);              
+              echo form_dropdown('grupa', $grupe, '', ['id'=>'ddGrupe', 'class'=>'dropdown form-select']);             
+              
 
               echo '<br>';
               echo form_label('Broj reketa: ', 'brreketa');              
@@ -64,7 +63,7 @@ $this->section('content');
       ?>
       </div>
 </div>
-
+</section>
 <script>    
     const grupni = document.querySelector('input[value="grupni"]');
     const individualni = document.querySelector('input[value="individualni"]');

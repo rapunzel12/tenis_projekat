@@ -7,6 +7,7 @@ use App\Models\ClanModel;
 use App\Models\CoachModel;
 use App\Models\UserModel;
 use App\Models\ZahtevModel;
+use App\Models\RezervacijaGrupaModel;
 use PHPUnit\Util\Xml\Loader;
 
 class Grupa extends User
@@ -15,10 +16,10 @@ class Grupa extends User
     public function delGrupa($id)
     {
         $clanModel = new ClanModel();                
-        $clanModel->delete($id); // brisanje svih clanova grupe koju brisemo
+        $clanModel->delete($id); // brisanje svih clanova grupe koju brisemo        
 
         $grupaModel = new GrupaModel();
-        $grupa = $grupaModel->find($id)->naziv; // pre brisanja da uzmemo naziv grupe                
+        $grupa = $grupaModel->find($id)->naziv; // pre brisanja da uzmemo naziv grupe da mozemo da prikazemo u poruci              
         $grupaModel->delete($id); // brisanje grupe
 
         return redirect()->to('coach/pregledGrupa')->with("msg", 'Grupa "' . strtoupper($grupa) . '" je obrisana.');        
@@ -28,8 +29,8 @@ class Grupa extends User
         
         if(!$this->validate(
             [
-                'naziv' => 'required|min_length[3]|max_length[15]|alpha_numeric_punct',
-                'ucenik' => 'required'
+                'naziv' => ['label' => 'Naziv grupe', 'rules' => 'required|min_length[3]|max_length[15]|alpha_numeric_punct'],
+                'ucenik' => ['label' => 'Učenik', 'rules' => 'required']
             ]
         )) {
             return redirect()->back()->withInput()->with('errors', $this->validator->listErrors('list'));
@@ -42,9 +43,8 @@ class Grupa extends User
             ];        
         $grupaModel->insert($grupa);      
         $idGrupe = $grupaModel->insertID(); // id kreirane grupe
-        $nazivGrupe = $grupaModel->find($idGrupe)->naziv;
+        $nazivGrupe = $grupaModel->find($idGrupe)->naziv;        
         
-        var_dump($this->request->getPost("ucenik"));
         // unos u tabelu clan sve izabrane ucenike
         foreach ($this->request->getPost("ucenik") as $selektovaniUcenik)
         {

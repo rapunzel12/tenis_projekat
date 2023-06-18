@@ -9,13 +9,7 @@ use App\Models\ZahtevModel;
 class Zahtevi extends User
 {
    
-    public function index()
-    {
-        return view('trener/zahteviRekreativaca');
-    }
-
-
-    
+      
     public function zahteviRekreativaca()    
     {        
         $rezervacijaModel = new RezervacijaModel();        
@@ -32,15 +26,14 @@ class Zahtevi extends User
         return view("trener/zahteviRekreativaca", ["zahteviRekreativaca" => $zahteviRekreativaca]);        
     }
 
-    public function delZahtevRekreativca($id)
+    public function obrisiZahtevRekreativca($id)
     {
-
         $rezervacijaModel = new RezervacijaModel();  
-        $idTermina = $rezervacijaModel->find($id)->idtermin;            
-        $rezervacijaModel->delete($id);       
+        $idTermina = $rezervacijaModel->find($id)->idtermin;
+        $rezervacijaModel->delete($id);
 
         $terminModel = new TerminModel();
-        $terminModel->delete($idTermina);
+        $terminModel->delete($idTermina);        
         
         return redirect()->to('zahtevi/zahteviRekreativaca')->with("msg", 'Zahtev je obrisan.');        
     }
@@ -79,7 +72,7 @@ class Zahtevi extends User
                 $poruka = "Zahtev je prihvaćen.";                
                 break;
             case 'cancel':
-                $zahtev->status = 'otk';
+                $zahtev->status = 'odb';
                 $zahtevModel->update($ucenik_id, $zahtev);
                 $poruka = "Zahtev je odbijen.";                
                 break;

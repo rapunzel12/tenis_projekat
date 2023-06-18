@@ -32,7 +32,18 @@ class CourtModel extends Model
         $tereniDropDown = [];        
         foreach($tereni as $teren) 
         {
-            $tereniDropDown[$teren->idteren] = 'Teren br'.$teren->idteren.' '.$teren->tippod;
+            switch ($teren->tippod) {
+                case 'S':
+                    $tippod = "Šljaka";
+                    break;
+                case 'T':
+                    $tippod = "Trava";
+                    break;
+                case 'B':
+                    $tippod = "Beton";
+                    break;
+            }       
+            $tereniDropDown[$teren->idteren] = 'Teren '.$tippod;
         }
         return $tereniDropDown;
     }
