@@ -9,7 +9,7 @@ return [
 
     // Rule Messages
     'alpha'                 => ' {field} može da sadrži samo znakove alfabeta.',
-    'alpha_space'           => 'The {field} field may only contain alphabetical characters and spaces.',
+    'alpha_space'           => ' {field} može da sadrži samo znakove alfabeta i razmak.',
     'required'              => ' {field} je obavezno polje.',
     'valid_email'           => ' {field} mora da sadrži validnu e-mail adresu.',
     'integer'               => ' {field} mora da sadrži brojeve.',
@@ -22,5 +22,5 @@ return [
      'uploaded' => '{field} nije validan fajl.',
      'max_size' => ' {field} je prevelika.',
      'is_image' => '{field} nije validna, uploadujte fajl slike.',
-     'mime_in'  => '{field} nema adekvatnu ekstenziju/ nije u odgovarajućem formatu.', // da li sam dobro razumela sta je mime???
+     'mime_in'  => '{field} nema adekvatnu ekstenziju/ nije u odgovarajućem formatu.', 
 ];

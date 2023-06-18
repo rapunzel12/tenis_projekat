@@ -22,9 +22,9 @@ class CourtModel extends Model
        
          if(isset($court_type))
             $builder->where('tippod', $court_type);
-            $builder->select('tippod, opis');
         return $builder->get()->getResultArray();
     }
+    
 	
 	 public function sviTereni()
     {

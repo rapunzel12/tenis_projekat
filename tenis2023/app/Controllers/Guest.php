@@ -20,7 +20,7 @@ class Guest extends Main
     public function register()
     {
         if(!$this->validate([
-            'name' =>['label'=>'Ime', 'rules'=> 'required|alpha|min_length[3]|max_length[25]'], //|regex_match[/regex/]', // prvo slovo velikim slovom
+            'name' =>['label'=>'Ime', 'rules'=> 'required|alpha_space|min_length[3]|max_length[25]'], //|regex_match[/regex/]', // prvo slovo velikim slovom
             'lastname' =>['label'=>'Prezime', 'rules' => 'required|alpha_space|min_length[3]|max_length[35]'], //|regex_match[/regex/]', // prvo slovo velikim slovom
             'username' =>['label'=>'Korisničko ime', 'rules' => 'required|is_unique[korisnik.korime]|min_length[3]|max_length[15]'],
             'password' =>['label'=>'Šifra', 'rules' => 'required|min_length[8]|max_length[15]'], 

@@ -31,9 +31,9 @@ class Admin extends User
         $userModel = new UserModel();
         $oldStatus=$userModel->find($idkor)->status;
         $userModel->update($idkor, ['status' => (integer)$status]);
-        $users = $userModel->getUsers($oldStatus);
-        // var_dump($users);
-        return view("admin/show_user_status", ['users'=>$users]);
+        $usersCurr = $userModel->getUsers($oldStatus);
+        var_dump("");
+        return view("admin/show_user_status", ['users'=>$usersCurr]);
     }
     
     /* public function updateUser($idkor, $status)
@@ -101,7 +101,6 @@ class Admin extends User
             return redirect()->back()->with('errors', $this->validator->listErrors('list'));
         }
         $courtModel =  new CourtModel();
-        $courts = $courtModel->builder()->select('idteren, tippod, opis'); // ne radi bez buildera
         $courts = $courtModel->getCourts($this->request->getVar('court_type')); // prosledjivanje samo jednog parametra, po cemu i pretrazujemo
         return view ('admin/show_courts', ['courts'=>$courts]);
     }
@@ -121,7 +120,8 @@ class Admin extends User
         $courtModel =  new CourtModel();
         $tippod= $courtModel->find($idteren)->tippod;        
         $courtModel->delete($idteren);
-        $courts = $courtModel->getCourts($idteren, $tippod);     
+        $courts = $courtModel->getCourts( $tippod);   
+        // var_dump($courts); 
         return view('admin/show_courts', ['courts'=>$courts]);
     }
 
