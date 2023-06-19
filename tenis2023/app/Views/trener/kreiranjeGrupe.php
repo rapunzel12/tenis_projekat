@@ -2,7 +2,7 @@
   $this->extend('layout');
   $this->section('content');
 ?>
-<?= view("trener/trener_header.php")?>
+
 <section class="page-section">
 <h2 class='text-center'>Kreiranje nove grupe</h2>
 

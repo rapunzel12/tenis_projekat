@@ -19,7 +19,7 @@ class Grupa extends User
         $clanModel->delete($id); // brisanje svih clanova grupe koju brisemo        
 
         $grupaModel = new GrupaModel();
-        $grupa = $grupaModel->find($id)->naziv; // pre brisanja da uzmemo naziv grupe da mozemo da prikazemo u poruci              
+        $grupa = $grupaModel->find($id)->naziv; // pre brisanja grupe da uzmemo naziv grupe da mozemo da prikazemo u poruci              
         $grupaModel->delete($id); // brisanje grupe
 
         return redirect()->to('coach/pregledGrupa')->with("msg", 'Grupa "' . strtoupper($grupa) . '" je obrisana.');        
@@ -39,7 +39,7 @@ class Grupa extends User
         $grupaModel = new GrupaModel();
         $grupa = [
             'naziv' => $this->request->getPost("naziv"),            
-            'trener_idkor' => $this->session->get("user")->idkor            
+            'trener_idkor' => session('user')->idkor
             ];        
         $grupaModel->insert($grupa);      
         $idGrupe = $grupaModel->insertID(); // id kreirane grupe
@@ -55,7 +55,7 @@ class Grupa extends User
         return redirect()->to('coach/pregledGrupa')->with("msg", 'Grupa "'.strtoupper($nazivGrupe).'" je uspešno kreirana.');
         
     }
-    public function formaAddGrupa(){    
+    public function kreiranjeGrupe(){    
        
         $korisnikModel = new UserModel();  
         $clanModel = new ClanModel();
@@ -68,11 +68,11 @@ class Grupa extends User
         $ucenici = $korisnikModel        
         ->join('zahtev', 'korisnik.idkor = zahtev.ucenik_idkor')
         ->where('zahtev.status', 'slo')
-        ->where('zahtev.trener_idkor', $this->session->get("user")->idkor)
+        ->where('zahtev.trener_idkor', session('user')->idkor)
         ->whereNotIn('korisnik.idkor', $exclude_ids)
         ->findAll();
 
-        return view("trener/formaAddGrupa", ["ucenici" => $ucenici]);        
+        return view("trener/kreiranjeGrupe", ["ucenici" => $ucenici]);        
     }
 
     

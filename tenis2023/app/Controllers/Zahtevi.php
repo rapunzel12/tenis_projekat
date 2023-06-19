@@ -7,8 +7,7 @@ use App\Models\RezervacijaModel;
 use App\Models\ZahtevModel;
 
 class Zahtevi extends User
-{
-   
+{  
       
     public function zahteviRekreativaca()    
     {        
@@ -25,29 +24,28 @@ class Zahtevi extends User
         
         return view("trener/zahteviRekreativaca", ["zahteviRekreativaca" => $zahteviRekreativaca]);        
     }
-
-    public function obrisiZahtevRekreativca($id)
+    
+    public function zahtevRekreativca($action, $id)
     {
         $rezervacijaModel = new RezervacijaModel();  
-        $idTermina = $rezervacijaModel->find($id)->idtermin;
-        $rezervacijaModel->delete($id);
 
-        $terminModel = new TerminModel();
-        $terminModel->delete($idTermina);        
-        
-        return redirect()->to('zahtevi/zahteviRekreativaca')->with("msg", 'Zahtev je obrisan.');        
+        if ($action == 'obrisi'){            
+            $idTermina = $rezervacijaModel->find($id)->idtermin;
+            $rezervacijaModel->delete($id);
+
+            $terminModel = new TerminModel();
+            $terminModel->delete($idTermina);        
+            $poruka = 'Zahtev je obrisan.';            
+        }
+
+        if ($action == 'otkazi'){
+            $rezervacijaModel->update($id, ['status' => 'otk']);   
+            $poruka = 'Zahtev je otkazan.';            
+        }
+        return redirect()->to('zahtevi/zahteviRekreativaca')->with("msg", $poruka);
+
     }
-
-    public function otkaziZahtevRekreativca($id)
-    {
-
-        $rezervacijaModel = new RezervacijaModel();
-        $rezervacija = $rezervacijaModel->find($id);
-        $rezervacija->status = 'otk';
-        $rezervacijaModel->update($id, $rezervacija);   
-        
-        return redirect()->to('zahtevi/zahteviRekreativaca')->with("msg", 'Zahtev je otkazan.');
-    }
+    
 
     public function zahteviUcenika(){
 
@@ -55,34 +53,33 @@ class Zahtevi extends User
         $zahteviUcenika = $zahtevModel
         ->select('idzahtev, trener_idkor, ucenik_idkor, korisnik.ime, korisnik.prezime, korisnik.poster, zahtev.status')
         ->join('korisnik', 'korisnik.idkor = zahtev.ucenik_idkor')
-        ->where('trener_idkor', $this->session->get("user")->idkor)
+        ->where('trener_idkor', session('user')->idkor)
         ->orderby("idzahtev desc")->findAll();
         
         return view('trener/zahteviUcenika', ['zahteviUcenika' => $zahteviUcenika]);
     }
 
-    public function zahteviUcenikaUpdate($action, $ucenik_id){
+    
+    public function zahtevUcenika($action, $ucenik_id){
 
         $zahtevModel = new ZahtevModel();  
         $zahtev = $zahtevModel->find($ucenik_id);
         switch ($action) {
-            case 'accept':                
+            case 'prihvati':                
                 $zahtev->status = 'slo';
                 $zahtevModel->update($ucenik_id, $zahtev);
                 $poruka = "Zahtev je prihvaćen.";                
                 break;
-            case 'cancel':
+            case 'odbij':
                 $zahtev->status = 'odb';
                 $zahtevModel->update($ucenik_id, $zahtev);
                 $poruka = "Zahtev je odbijen.";                
                 break;
-            case 'del':
+            case 'obrisi':
                 $zahtevModel->delete($ucenik_id);                
                 $poruka = 'Zahtev je uspešno obrisan.';
                 break;            
-        }               
-
-        
+        }        
         
         return redirect()->to('zahtevi/zahteviUcenika')->with("msg", $poruka);
     }

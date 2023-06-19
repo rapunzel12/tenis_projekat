@@ -3,7 +3,7 @@
 $this->extend('layout');
 $this->section('content');
 ?>
-<?= view("trener/trener_header.php")?>
+
 <section class="page-section">
 <div class="container">
     <?php 
@@ -18,11 +18,7 @@ $this->section('content');
             echo $session->getFlashdata('errors');
             echo "</div>";
         }
-        
-        
-        
-    ?>
-        
+    ?>        
             
         <?php 
         helper('html');    
@@ -53,7 +49,7 @@ $this->section('content');
             } else echo "Nema grupa.";
             echo "<br>";
             echo "<div class='d-grid col-6 mx-auto'>";                
-                echo anchor('grupa/formaAddGrupa', 'Kreiraj novu grupu', ['class'=> 'btn btn-primary']);
+                echo anchor('grupa/kreiranjeGrupe', 'Kreiraj novu grupu', ['class'=> 'btn btn-primary']);
             echo "</div>";
         
         ?>

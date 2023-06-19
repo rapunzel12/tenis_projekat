@@ -4,15 +4,13 @@ $this->section('content');
 ?>
 
 <?= helper('html'); ?>
-<?= view("trener/trener_header.php")?>
 <section class="page-section">
 <div class="container">    
         <h2 class='text-center'>Treneri</h2>
         <?php 
             echo "<div class='row g-4 mt-4'>";
             if (!empty($treneri))
-            foreach ($treneri as $trener) {   
-
+            foreach ($treneri as $trener) {
                 
                     echo "<div class='col-sm-12 col-md-4'>";
                         echo "<div class='bg-light border border-warning rounded text-center p-3'>";

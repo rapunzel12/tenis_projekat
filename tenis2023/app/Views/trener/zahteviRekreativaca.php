@@ -2,7 +2,7 @@
     $this->extend('layout');
     $this->section('content');
 ?>
-<?= view("trener/trener_header.php")?>
+
 <section class="page-section">
 <div class="container">
     <div class="row">
@@ -18,9 +18,6 @@
             echo $session->getFlashdata('errors');
             echo "</div>";
         }
-        
-        
-        
 
         echo "<h2 class='text-center'>Zahtevi rekreativaca</h2>";    
         
@@ -35,7 +32,6 @@
             if (isset($_GET['status'])) echo "<a href='zahteviRekreativaca' class='btn btn-primary'>Reset</a>";
             echo form_close();
             echo "<br><br>";
-
 
             echo "<table class='table table-bordered table-hover'>";
             echo "<thead class='thead-light bg-warning'>
@@ -96,10 +92,10 @@
                     if ($zahtev->status == 'Otkazan') 
                     {
                         echo "<td class='text-center'><i class=\"fa-solid fa-square-xmark fa-2xl\" style=\"color: #f1f1f1;\" title=\"Otkaži\"></i></td>";
-                        echo "<td class='text-center'>".anchor('zahtevi/obrisiZahtevRekreativca/'.$zahtev->idrez, '<i class="fa-solid fa-trash-can fa-2xl" style="color: #ad0123;" title="Obriši"></i>')."</td>";
+                        echo "<td class='text-center'>".anchor('zahtevi/zahtevRekreativca/obrisi/'.$zahtev->idrez, '<i class="fa-solid fa-trash-can fa-2xl" style="color: #ad0123;" title="Obriši"></i>')."</td>";
                     }
                     else {
-                        echo "<td class='text-center'>".anchor('zahtevi/otkaziZahtevRekreativca/'.$zahtev->idrez, '<i class="fa-solid fa-square-xmark fa-2xl" style="color: ##ffc800;" title="Otkaži"></i>')."</td>";
+                        echo "<td class='text-center'>".anchor('zahtevi/zahtevRekreativca/otkazi/'.$zahtev->idrez, '<i class="fa-solid fa-square-xmark fa-2xl" style="color: ##ffc800;" title="Otkaži"></i>')."</td>";
                         echo "<td class='text-center'><i class=\"fa-solid fa-trash-can fa-2xl\" style=\"color: #f1f1f1;\" title=\"Obriši\"></i></td>";
                     }                
                     

@@ -8,7 +8,6 @@ $this->section('content');
       display: none;
     }
   </style>
-<?= view("trener/trener_header.php")?>
 <section class="page-section">
 <h2 class='text-center'>Rezervisanje termina</h2>
 <div class="container"> 

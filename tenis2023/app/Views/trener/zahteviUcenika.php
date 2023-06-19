@@ -1,8 +1,8 @@
 <?php
     $this->extend('layout');
     $this->section('content');
+    helper('html');
 ?>
-<?= view("trener/trener_header.php")?>
 <section class="page-section">
     <div class="container">
         <div class="row">
@@ -13,9 +13,6 @@
                     echo $session->getFlashdata('msg');
                     echo "</div>";
                 }
-                
-                
-                
 
                 echo "<h2 class='text-center'>Zahtevi od učenika</h2>";    
                 
@@ -53,15 +50,15 @@
                             switch ($zahtev->status) {
                                 case 'cek':                                    
                                     echo "<td class='text-center'>Na čekanju</td>";
-                                    echo "<td class='text-center'>".anchor('zahtevi/zahteviUcenikaUpdate/accept/'.$zahtev->idzahtev, '<i class="fa-solid fa-square-check fa-2xl" style="color: #098202;" title="Prihvati"></i>')."</td>";
-                                    echo "<td class='text-center'>".anchor('zahtevi/zahteviUcenikaUpdate/cancel/'.$zahtev->idzahtev, '<i class="fa-solid fa-square-xmark fa-2xl" style="color: ##ffc800;" title="Odbij"></i>')."</td>";
+                                    echo "<td class='text-center'>".anchor('zahtevi/zahtevUcenika/prihvati/'.$zahtev->idzahtev, '<i class="fa-solid fa-square-check fa-2xl" style="color: #098202;" title="Prihvati"></i>')."</td>";
+                                    echo "<td class='text-center'>".anchor('zahtevi/zahtevUcenika/odbij/'.$zahtev->idzahtev, '<i class="fa-solid fa-square-xmark fa-2xl" style="color: ##ffc800;" title="Odbij"></i>')."</td>";
                                     echo "<td class='text-center'><i class=\"fa-solid fa-trash-can fa-2xl\" style=\"color: #f1f1f1;\" title=\"Obriši\"></i></td>";
                                     break;
                                 case 'odb':                                    
                                     echo "<td class='text-center'>Odbijen</td>";
                                     echo "<td class='text-center'><i class=\"fa-solid fa-square-check fa-2xl\" style=\"color: #f1f1f1;\" title=\"Prihvati\"></i></td>";
                                     echo "<td class='text-center'><i class=\"fa-solid fa-square-xmark fa-2xl\" style=\"color: #f1f1f1;\" title=\"Odbij\"></i></td>";
-                                    echo "<td class='text-center'>".anchor('zahtevi/zahteviUcenikaUpdate/del/'.$zahtev->idzahtev, '<i class="fa-solid fa-trash-can fa-2xl" style="color: #ad0123;" title="Obriši"></i>')."</td>";
+                                    echo "<td class='text-center'>".anchor('zahtevi/zahtevUcenika/obrisi/'.$zahtev->idzahtev, '<i class="fa-solid fa-trash-can fa-2xl" style="color: #ad0123;" title="Obriši"></i>')."</td>";
                                     break;
                                 case 'slo':                                    
                                     echo "<td class='text-center'>Prihvaćen</td>";
