@@ -62,17 +62,14 @@ class Zahtevi extends User
     
     public function zahtevUcenika($action, $ucenik_id){
 
-        $zahtevModel = new ZahtevModel();  
-        $zahtev = $zahtevModel->find($ucenik_id);
+        $zahtevModel = new ZahtevModel();
         switch ($action) {
-            case 'prihvati':                
-                $zahtev->status = 'slo';
-                $zahtevModel->update($ucenik_id, $zahtev);
+            case 'prihvati':
+                $zahtevModel->update($ucenik_id, ['status' => 'slo']);
                 $poruka = "Zahtev je prihvaćen.";                
                 break;
-            case 'odbij':
-                $zahtev->status = 'odb';
-                $zahtevModel->update($ucenik_id, $zahtev);
+            case 'odbij':                
+                $zahtevModel->update($ucenik_id, ['status' => 'odb']);
                 $poruka = "Zahtev je odbijen.";                
                 break;
             case 'obrisi':

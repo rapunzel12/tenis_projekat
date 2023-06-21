@@ -110,33 +110,31 @@ class Coach extends User
             // snimi rezervaciju            
             $rezervacijaModel = new RezervacijaModel();
             $rezervacija = [
-                $this->request->getPost("teren"),
-                $idTermina,
-                'rez',
-                ((int)$this->request->getPost("brreketa")),
-                '0',
-                session('user')->idkor,
-                $this->request->getPost("ucenik"),
-                ];          
-            $query= 'INSERT INTO rezervacija (idteren, idtermin, status, brrek, cena, trener_idkor, korisnik_idkor) VALUES (?,?,?,?,?,?,?)';
-            $rezervacijaModel->query($query, $rezervacija);         
+                'idteren' => $this->request->getPost("teren"),
+                'idtermin' => $idTermina,
+                'status' => 'rez',
+                'brrek' => ((int)$this->request->getPost("brreketa")),
+                'cena' => '0',
+                'trener_idkor' => session('user')->idkor,
+                'korisnik_idkor' => $this->request->getPost("ucenik"),
+                ];                      
+            $rezervacijaModel->insert($rezervacija);         
         }
         if ($tip == 'grupni')
         {
             // snimi rezervaciju            
             $rezervacijaGrupaModel = new RezervacijaGrupaModel();
             $rezervacija = [
-                $this->request->getPost("teren"),
-                $idTermina,
-                'rez',
-                ((int)$this->request->getPost("brreketa")),
-                '0',
-                session('user')->idkor,
-                $this->request->getPost("grupa"),
-                ];          
-            $query= 'INSERT INTO rezervacija_grupa (idteren, idtermin, status, brrek, cena, trener_idkor, idgru) VALUES (?,?,?,?,?,?,?)';
-            $rezervacijaGrupaModel->query($query, $rezervacija);
-        }        
+                'idteren' => $this->request->getPost("teren"),
+                'idtermin' => $idTermina,
+                'status' => 'rez',
+                'brrek' => ((int)$this->request->getPost("brreketa")),
+                'cena' => '0',
+                'trener_idkor' => session('user')->idkor,
+                'idgru' => $this->request->getPost("grupa"),
+                ];            
+            $rezervacijaGrupaModel->insert($rezervacija);
+        }              
 
         $poruka = ucfirst($tip) . " termin je zakazan za " . $datumVremeObj->format('d.m.Y.') . " u ".$datumVremeObj->format('H:i'); 
 
@@ -219,7 +217,7 @@ class Coach extends User
             $poruka = 'Rezervacija je otkazana.';
         }
 
-        return redirect()->to('Coach/pregledRezervacijaGrupni')->with("msg", $poruka);
+        return redirect()->to('Coach/pregledRezervacijaGrupe')->with("msg", $poruka);
     }    
     
 }
