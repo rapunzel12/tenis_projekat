@@ -4,9 +4,8 @@ $this->section('content');
 ?>
 <div class="masthead container">
     <div class="row">
-        <?= view("admin/admin_menu") ?>
+    <?= view("admin/admin_menu") ?>
     </div>
-    <div class="row">
         <div class="col-sm-6">
             <br>
             <br>
@@ -70,7 +69,7 @@ $this->section('content');
                                 }
                                 if ($user['tip'] == 3) {
                                     echo "administrator";
-                                }  ?></td>
+                                } ?></td>
                             <td>
                                 <?php if ($user['status'] == 0 || $user['status'] == 2 || $user['status'] == 3) { ?>
                                     <?= anchor('Admin/updateUser/' . $user['idkor'] . '/1', 'Prihvati') ?> <br>

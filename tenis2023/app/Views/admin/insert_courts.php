@@ -38,7 +38,7 @@ $this->section('content');
                 placeholder="Opis teniskog terena do 600 karaktera..."><?= set_value("court_description") ?></textarea>
                 <br />
 
-                <label for="poster_vertical" class="form-label">Fotografija dimenzija 200 x 200...</label>
+                <label for="poster_vertical" class="form-label">Fotografija teniskog terena</label>
                 <input type="file" class="form-control" name="poster_vertical" accept="image/*" value="<?= set_value('poster_vertical') ?>">
                 <br />
 

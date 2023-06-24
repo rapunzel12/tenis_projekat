@@ -7,7 +7,7 @@ $this->section('content');
 <!-- Masthead-->
 <div class="owl-carousel owl-theme">
 
-<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+  <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="item">
@@ -47,19 +47,19 @@ $this->section('content');
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
-    </button> 
-</header>
-</div>
-<div class="Onama">
+    </button>
+    </header>
+  </div>
+  <div class="Onama">
     <h1>Teniski klub</h1>
     <p>Teniski klub "Team 1" je otvoren septembra 2008. godine</p>
     <p>Klub poseduje modernu klupsku zgradu, sest terena za tenis sa vrhunskim podlogama (trava,sljaka,beton) koji se rredovno odrzavaju.</p>
     <p>Dva terena imaju podlogu na kojoj cesto nasi reprezentativci Janko Tipsarevic, Nenad Zimonjic, Viktor Troicki,Ana Jovanovic,Bojana JOvanovski,Miki Jankovic,Dusan Vukicevic.</p>
     <p>Klub poseduje fantasticne uslove za trening takmicara tako da usko saradjuju sa Teniskim Savezom Srbije</p>
-    <p>Zbog svog svojstvenog stila i duha klub ima dosta stalnih clanova koji se rekreativno bave tenisom po najpovoljnijim cenama i suszivaju u njegovim mogucnostima.Nas klub nudi kvalitetne programe za rekreativca u ucesnike.</p> 
-</div>
- 
-<div class="container">
+    <p>Zbog svog svojstvenog stila i duha klub ima dosta stalnih clanova koji se rekreativno bave tenisom po najpovoljnijim cenama i suszivaju u njegovim mogucnostima.Nas klub nudi kvalitetne programe za rekreativca u ucesnike.</p>
+  </div>
+
+  <div class="container">
     <div class="row">
       <div class="col-md-12">
         <div class="map-container">
@@ -73,8 +73,8 @@ $this->section('content');
       </div>
     </div>
   </div>
-<!-- About-->
-<!--
+  <!-- About-->
+  <!--
 <section class="page-section" id="about">
     <div class="container">
         <div class="text-center">
@@ -145,8 +145,8 @@ $this->section('content');
     </div>
 </section>
 -->
-<!-- Clients-->
-<!--
+  <!-- Clients-->
+  <!--
 <div class="py-5">
     <div class="container">
         <div class="row align-items-center">
@@ -167,8 +167,16 @@ $this->section('content');
 </div>
 -->
 
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script><!-- OVA LINIJA BLOKIRA IZVRSAVANJE SERVERSKE STRANE KODA-->
+  <!-- Core theme JS-->
+  <script src="js/scripts.js"></script><!-- OVA LINIJA BLOKIRA IZVRSAVANJE SERVERSKE STRANE KODA-->
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+  <!-- * *                               SB Forms JS                               * *-->
+  <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+  <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script> <!-- OVA LINIJA BLOKIRA IZVRSAVANJE SERVERSKE STRANE KODA-->
 
-                  
-<?php
-$this->endSection();
-?>
+  <?php
+  $this->endSection();
+  ?>

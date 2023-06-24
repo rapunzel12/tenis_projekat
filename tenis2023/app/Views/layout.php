@@ -8,14 +8,15 @@
     <meta name="author" content="" />
     <title>Tenis</title>
     <!-- Favicon-->
-    <link rel="icon" type="Tenis" href="assets/img/Logo.jpg" />
+    <!-- <link rel="icon" type="Tenis" href="assets/img/Logo.jpg" /> --> <!-- GRESKA JE U OVOJ LINIJI -->
+    <!-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico" /> --> <!-- originalna linija iz bootstrap teme -->
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" /> 
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
-
+    
     <?php
     helper('html');
     echo link_tag('css/styles.css');
@@ -26,24 +27,24 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="#page-top"><img src="<?= base_url("assets/img/Logo.jpg")?>" alt="..." /></a>
+            <a class="navbar-brand" href="#page-top"><img src="<?= base_url("assets/img/Logo.jpg") ?>" alt="..." /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars ms-1"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <?=view("menu")?>                    
+                    <?= view("menu") ?>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <?php $this->renderSection('content');?>
-    
+    <?php $this->renderSection('content'); ?>
+
     <!-- Footer-->
     <footer class="footer py-4">
-            <div class="container">
+    <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-start">Prekvalifikacija © PHP Grupa 1</div>
                     <div class="col-lg-4 my-3 my-lg-0">
@@ -55,17 +56,17 @@
                     </div>
                 </div>
             </div>
-        </footer>
-    
+    </footer>
+
     <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <!--  <script src="js/scripts.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> --><!-- OVA LINIJA BLOKIRA IZVRSAVANJE SERVERSKE STRANE KODA-->
+    <!-- Core theme JS--> 
+    <!-- <script src="js/scripts.js"></script> --><!-- OVA LINIJA BLOKIRA IZVRSAVANJE SERVERSKE STRANE KODA-->
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <!-- * *                               SB Forms JS                               * *-->
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <!-- <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>  --><!-- OVA LINIJA BLOKIRA IZVRSAVANJE SERVERSKE STRANE KODA-->
 </body>
 
 </html>

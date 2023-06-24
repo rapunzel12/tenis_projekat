@@ -1,5 +1,5 @@
 <?php
-
+use App\Controllers\Guest;
 use CodeIgniter\Test\CIUnitTestCase;
 use CodeIgniter\Test\ControllerTestTrait;
 use CodeIgniter\Test\DatabaseTestTrait;

@@ -47,11 +47,7 @@ class Main extends BaseController
     public function viewAdmins(){
         
         $userModel = new UserModel(); 
-        $users= $userModel->select('korisnik.idkor, administrator.idkor, opis') 
-        ->where('korisnik.idkor = administrator.idkor');
-        // ->where('tip', '3')->findAll();
-        //->get()
-        //->getResult();
+        $users= $userModel->where('tip', '3')->findAll();
         return view('admins', ['users'=>$users]);
     }
 
