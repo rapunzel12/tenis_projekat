@@ -9,7 +9,7 @@ $this->section('content');
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">Teniski tereni</h2>
-            <h3 class="section-subheading text-muted"></h3>
+            <h3 class="section-subheading text-muted">Naši vrhunski teniski tereni omogući će vam da uživate u igri.</h3>
         </div>
         <ul class="timeline">
             <?php foreach ($courts as $court) { ?>
