@@ -11,21 +11,19 @@
             echo "<div class='alert alert-success' role='alert'>";
             echo $session->getFlashdata('msg');
             echo "</div>";
-        }      
-        
-        
+        }
 
         echo "<h2 class='text-center'>Zakazani grupni termini</h2>";    
         
         if (!empty($rezervacije))
         {
-            echo form_open('Coach/pregledRezervacijaGrupni', ['method' =>'get']);            
+            echo form_open('Coach/pregledRezervacijaGrupe', ['method' =>'get']);            
             
             $status = ['' => '', 'rez' => 'Rezervisan', 'otk' => 'Otkazan'];        
             echo form_label('Filter status:', 'status');
             echo form_dropdown('status', $status, $_GET['status']??"");
             echo form_submit('search', 'Prikaži', ['class'=> 'btn btn-primary']);
-            if (isset($_GET['status'])) echo "<a href='pregledRezervacijaGrupni' class='btn btn-primary'>Reset</a>";
+            if (isset($_GET['status'])) echo "<a href='pregledRezervacijaGrupe' class='btn btn-primary'>Reset</a>";
             echo form_close();
             echo "<br><br>";
 

@@ -1,13 +1,13 @@
 <?php
   $this->extend('layout');
   $this->section('content');
+  helper('html');
 ?>
-<?= view("trener/trener_header.php")?>
+
 <section class="page-section">
 <h2 class='text-center'>Kreiranje nove grupe</h2>
 
-<?php
-  helper('html');
+<?php  
   echo "<div class='container'>";
   echo "<div class='row'>";
 	if (!empty($ucenici)){

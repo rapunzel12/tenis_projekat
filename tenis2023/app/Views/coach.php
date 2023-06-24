@@ -1,9 +1,9 @@
 <?php
     $this->extend('layout');
-    $this->section('content');     
+    $this->section('content');
+    helper('html');     
 ?>
 
-<?= view("trener/trener_header.php")?>
 <section class="page-section">
 <div class="container">
     <div class="row">        
@@ -13,12 +13,12 @@
             <a href="<?= base_url('zahtevi/zahteviUcenika') ?>" class="btn btn-outline-warning mb-3 p-3">Zahtevi od učenika <span class="badge rounded-pill text-bg-danger"> <?= $ukupnoZahtevaUcenika?></span></a>
             <a href="<?= base_url('zahtevi/zahteviRekreativaca') ?>" class="btn btn-outline-warning mb-3 p-3">Zahtevi rekreativaca za trening <span class="badge rounded-pill text-bg-danger"><?= $rezervacijaNaCekanju ?></span></a>
             <a href="<?= base_url('Coach/rezervisanjeTermina') ?>" class="btn btn-outline-danger mb-3 p-3">Rezervisanje termina sa učenicima</a>
-            <a href="<?= base_url('Coach/pregledRezervacijaGrupni') ?>" class="btn btn-outline-info mb-3 p-3">Zakazani grupni termini - pregled <span class="badge rounded-pill text-bg-info"><?= $ukupnoRezervacijaGrupni ?></span></a></a>
+            <a href="<?= base_url('Coach/pregledRezervacijaGrupe') ?>" class="btn btn-outline-info mb-3 p-3">Zakazani grupni termini - pregled <span class="badge rounded-pill text-bg-info"><?= $ukupnoRezervacijaGrupni ?></span></a></a>
             <a href="<?= base_url('Coach/pregledRezervacija') ?>" class="btn btn-outline-info mb-3 p-3">Zakazani individualni termini - pregled <span class="badge rounded-pill text-bg-info"><?= $ukupnoRezervacija ?></span></a></a>
         </div>
         <div class="col-sm-12 col-md-6 d-grid gap-2">
-            <a href="<?= base_url('coach/pregledGrupa') ?>" class="btn btn-outline-secondary mb-3 p-3">Grupe - pregled <span class="badge rounded-pill text-bg-secondary"><?= $ukupnoGrupa ?></span></a>
-            <a href="<?= base_url('grupa/formaAddGrupa') ?>" class="btn btn-outline-secondary mb-3 p-3">Grupe - kreiranje</a>
+            <a href="<?= base_url('grupa/pregledGrupa') ?>" class="btn btn-outline-secondary mb-3 p-3">Grupe - pregled <span class="badge rounded-pill text-bg-secondary"><?= $ukupnoGrupa ?></span></a>
+            <a href="<?= base_url('grupa/kreiranjeGrupe') ?>" class="btn btn-outline-secondary mb-3 p-3">Grupe - kreiranje</a>
             <a href="<?= base_url('Coach/pregledTerena') ?>" class="btn btn-outline-success mb-3 p-3">Svi tereni - pregled</a>
             <a href="<?= base_url('Coach/pregledTrenera') ?>" class="btn btn-outline-success mb-3 p-3">Svi treneri - pregled</a>
             <a href="#trenerModal" class="btn btn-outline-dark mb-3 p-3" data-bs-toggle="modal" data-target="#trenerModal">Moji podaci - pregled</a>            

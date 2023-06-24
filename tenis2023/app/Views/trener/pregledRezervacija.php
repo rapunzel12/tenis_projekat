@@ -1,8 +1,9 @@
 <?php
     $this->extend('layout');
     $this->section('content');
+    helper('html');
 ?>
-<?= view("trener/trener_header.php")?>
+
 <section class="page-section">
 <div class="container">
     <div class="row">
@@ -12,9 +13,7 @@
             echo "<div class='alert alert-success' role='alert'>";
             echo $session->getFlashdata('msg');
             echo "</div>";
-        }      
-        
-        
+        }
 
         echo "<h2 class='text-center'>Zakazani termini sa učenicima i rekreativcima</h2>";    
         
@@ -87,10 +86,10 @@
                     if ($rezervacija->status == 'Otkazan') 
                     {
                         echo "<td class='text-center'><i class=\"fa-solid fa-square-xmark fa-2xl\" style=\"color: #f1f1f1;\" title=\"Otkaži\"></i></td>";
-                        echo "<td class='text-center'>".anchor('Coach/obrisiRezervaciju/'.$rezervacija->idrez, '<i class="fa-solid fa-trash-can fa-2xl" style="color: #ad0123;" title="Obriši"></i>')."</td>";
+                        echo "<td class='text-center'>".anchor('Coach/rezervacija/obrisi/'.$rezervacija->idrez, '<i class="fa-solid fa-trash-can fa-2xl" style="color: #ad0123;" title="Obriši"></i>')."</td>";
                     }
                     else {
-                        echo "<td class='text-center'>".anchor('Coach/otkaziRezervaciju/'.$rezervacija->idrez, '<i class="fa-solid fa-square-xmark fa-2xl" style="color: ##ffc800;" title="Otkaži"></i>')."</td>";
+                        echo "<td class='text-center'>".anchor('Coach/rezervacija/otkazi/'.$rezervacija->idrez, '<i class="fa-solid fa-square-xmark fa-2xl" style="color: ##ffc800;" title="Otkaži"></i>')."</td>";
                         echo "<td class='text-center'><i class=\"fa-solid fa-trash-can fa-2xl\" style=\"color: #f1f1f1;\" title=\"Obriši\"></i></td>";
                     }   
                                     

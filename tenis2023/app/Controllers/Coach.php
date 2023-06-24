@@ -20,7 +20,7 @@ class Coach extends User
         $terenModel = new CourtModel();        
         $tereni = $terenModel->findAll();
 
-        return view("trener/teren", ["tereni" => $tereni]);        
+        return view("trener/pregledTerena", ["tereni" => $tereni]);        
     }
 
     public function pregledTrenera()
@@ -36,25 +36,6 @@ class Coach extends User
         
     }
 
-    public function pregledGrupa()
-    {
-        $grupaModel = new GrupaModel();        
-                
-        $grupe = $grupaModel        
-        ->where("trener_idkor", $this->session->get("user")->idkor)
-        ->orderby("idgru desc") // sortiramo po idgrupe opadajuce da bi poslednje kreirane bile na pocetku
-        ->findAll();
-
-        $korisnikModel = new UserModel();
-        $clanoviGrupe = $korisnikModel
-        ->join('clan', 'korisnik.idkor = clan.ucenik_idkor')
-        ->where("clan.ucenik_idkor = korisnik.idkor")        
-        ->findAll();
-
-        return view("trener/grupe", ["clanoviGrupe" => $clanoviGrupe, "grupe" => $grupe]);         
-        
-    }
-
     public function rezervisanjeTermina()
     {
         $terenModel = new CourtModel();
@@ -62,14 +43,14 @@ class Coach extends User
 
         
         $grupaModel = new GrupaModel();        
-        $grupe['Izaberite grupu']= $grupaModel->sveGrupeTrenera($this->session->get("user")->idkor);
+        $grupe['Izaberite grupu']= $grupaModel->sveGrupeTrenera(session('user')->idkor);
         
         
         // svi korisnici koji su ucenici trenera i prihvaceni od strane trenera
         $korisnikModel = new UserModel();
         $korisnici = $korisnikModel
         ->join('zahtev', 'korisnik.idkor = zahtev.ucenik_idkor')
-        ->where('trener_idkor', $this->session->get("user")->idkor)
+        ->where('trener_idkor', session('user')->idkor)
         ->where('zahtev.status', 'slo')
         ->orderby("korisnik.prezime asc")->findAll();        
         
@@ -80,7 +61,7 @@ class Coach extends User
         return view("trener/rezervisanjeTermina", ["tereni"=>$tereni, "grupe"=>$grupe, "ucenici"=>$ucenici]);
     }    
 
-
+    // snimi rezervaciju termina sa ucenikom ili grupom
     public function addRezervisanjeTermina(){
         if(!$this->validate(
             [
@@ -110,33 +91,31 @@ class Coach extends User
             // snimi rezervaciju            
             $rezervacijaModel = new RezervacijaModel();
             $rezervacija = [
-                $this->request->getPost("teren"),
-                $idTermina,
-                'rez',
-                ((int)$this->request->getPost("brreketa")),
-                '0',
-                $this->session->get("user")->idkor,
-                $this->request->getPost("ucenik"),
-                ];          
-            $query= 'INSERT INTO rezervacija (idteren, idtermin, status, brrek, cena, trener_idkor, korisnik_idkor) VALUES (?,?,?,?,?,?,?)';
-            $rezervacijaModel->query($query, $rezervacija);         
+                'idteren' => $this->request->getPost("teren"),
+                'idtermin' => $idTermina,
+                'status' => 'rez',
+                'brrek' => ((int)$this->request->getPost("brreketa")),
+                'cena' => '0',
+                'trener_idkor' => session('user')->idkor,
+                'korisnik_idkor' => $this->request->getPost("ucenik"),
+                ];                      
+            $rezervacijaModel->insert($rezervacija);         
         }
         if ($tip == 'grupni')
         {
             // snimi rezervaciju            
             $rezervacijaGrupaModel = new RezervacijaGrupaModel();
             $rezervacija = [
-                $this->request->getPost("teren"),
-                $idTermina,
-                'rez',
-                ((int)$this->request->getPost("brreketa")),
-                '0',
-                $this->session->get("user")->idkor,
-                $this->request->getPost("grupa"),
-                ];          
-            $query= 'INSERT INTO rezervacija_grupa (idteren, idtermin, status, brrek, cena, trener_idkor, idgru) VALUES (?,?,?,?,?,?,?)';
-            $rezervacijaGrupaModel->query($query, $rezervacija);
-        }        
+                'idteren' => $this->request->getPost("teren"),
+                'idtermin' => $idTermina,
+                'status' => 'rez',
+                'brrek' => ((int)$this->request->getPost("brreketa")),
+                'cena' => '0',
+                'trener_idkor' => session('user')->idkor,
+                'idgru' => $this->request->getPost("grupa"),
+                ];            
+            $rezervacijaGrupaModel->insert($rezervacija);
+        }              
 
         $poruka = ucfirst($tip) . " termin je zakazan za " . $datumVremeObj->format('d.m.Y.') . " u ".$datumVremeObj->format('H:i'); 
 
@@ -144,6 +123,7 @@ class Coach extends User
 
     }
 
+    // pregled rezervacija sa ucenicima i rekreativcima
     public function pregledRezervacija()
     {
 
@@ -153,7 +133,7 @@ class Coach extends User
         ->join('korisnik', 'rezervacija.korisnik_idkor = korisnik.idkor')
         ->join('termin', 'rezervacija.idtermin = termin.idtermin')
         ->join('teren', 'rezervacija.idteren = teren.idteren')
-        ->where('trener_idkor', $this->session->get("user")->idkor)
+        ->where('trener_idkor', session('user')->idkor)
         ->where('rezervacija.status = "rez" or rezervacija.status = "otk"')
         ->orderby('termin.datum asc, termin.vreme asc')       
         ->findAll();
@@ -161,28 +141,30 @@ class Coach extends User
         return view('trener/pregledRezervacija', ['rezervacije' => $rezervacije]);
     }
 
-
-    public function obrisiRezervaciju($id){
-        $rezervacijaModel = new RezervacijaModel();  
-        $idTermina = $rezervacijaModel->find($id)->idtermin;            
-        $rezervacijaModel->delete($id);       
-
-        $terminModel = new TerminModel();
-        $terminModel->delete($idTermina);
+    // azuriranje rezervacije sa ucenicima i rekreativcima
+    public function rezervacija($action, $id){
+        $rezervacijaModel = new RezervacijaModel(); 
         
-        return redirect()->to('Coach/pregledRezervacija')->with("msg", 'Termin je obrisan.');
+        if ($action == 'obrisi'){        
+            $idTermina = $rezervacijaModel->find($id)->idtermin;            
+            $rezervacijaModel->delete($id);       
+
+            $terminModel = new TerminModel();
+            $terminModel->delete($idTermina);
+            $poruka = 'Individualni termin je obrisan.';        
+        }
+
+        if ($action == 'otkazi')
+        {
+            $rezervacijaModel->update($id, ['status' => 'otk']);
+            $poruka = 'Individualni termin je otkazan.';            
+        }
+
+        return redirect()->to('Coach/pregledRezervacija')->with("msg", $poruka);
+
     }
 
-    public function otkaziRezervaciju($id){
-        $rezervacijaModel = new RezervacijaModel();
-        $rezervacija = $rezervacijaModel->find($id);
-        $rezervacija->status = 'otk';
-        $rezervacijaModel->update($id, $rezervacija);   
-        
-        return redirect()->to('Coach/pregledRezervacija')->with("msg", 'Termin je otkazan.');
-    }
-
-    public function pregledRezervacijaGrupni()
+    public function pregledRezervacijaGrupe()
     {
 
         $rezervacijaGrupaModel = new RezervacijaGrupaModel();
@@ -191,14 +173,14 @@ class Coach extends User
         ->join('grupa', 'rezervacija_grupa.idgru = grupa.idgru')
         ->join('termin', 'rezervacija_grupa.idtermin = termin.idtermin')
         ->join('teren', 'rezervacija_grupa.idteren = teren.idteren')
-        ->where('rezervacija_grupa.trener_idkor', $this->session->get("user")->idkor)        
+        ->where('rezervacija_grupa.trener_idkor', session('user')->idkor)        
         ->orderby('termin.datum asc, termin.vreme asc')       
         ->findAll();
 
-        return view('trener/pregledRezervacijaGrupni', ['rezervacije' => $rezervacije]);
+        return view('trener/pregledRezervacijaGrupe', ['rezervacije' => $rezervacije]);
     }
 
-
+    // azuriranje rezervacije za grupu
     public function rezervacijaGrupa($action, $id){
         $rezervacijaGrupaModel = new RezervacijaGrupaModel();
 
@@ -208,19 +190,15 @@ class Coach extends User
 
             $terminModel = new TerminModel();
             $terminModel->delete($idTermina);
-            $poruka = 'Rezervacija je obrisana.';
-        
-            
+            $poruka = 'Rezervacija je obrisana.';            
         }
 
-        if ($action == 'otkazi'){            
-            $rezervacija = $rezervacijaGrupaModel->find($id);
-            $rezervacija->status = 'otk';
-            $rezervacijaGrupaModel->update($id, $rezervacija);
+        if ($action == 'otkazi'){
+            $rezervacijaGrupaModel->update($id, ['status' => 'otk']);
             $poruka = 'Rezervacija je otkazana.';
         }
 
-        return redirect()->to('Coach/pregledRezervacijaGrupni')->with("msg", $poruka);
+        return redirect()->to('Coach/pregledRezervacijaGrupe')->with("msg", $poruka);
     }    
     
 }
