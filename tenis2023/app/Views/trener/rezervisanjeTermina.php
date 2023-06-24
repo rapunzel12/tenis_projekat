@@ -13,7 +13,6 @@ $this->section('content');
 <div class="container"> 
     <div class='row g-4'>
       <?php
-
               $session = \Config\Services::session();
               if ($session->getFlashdata('msg')){
                   echo "<div class='alert alert-success' role='alert'>";
@@ -24,7 +23,8 @@ $this->section('content');
                   echo "<div class='alert alert-danger' role='alert'>";
                   echo $session->getFlashdata('errors');
                   echo "</div>";
-              }  
+              }
+
               
               echo form_open("coach/addRezervisanjeTermina", ['method' => 'post']);
               echo form_label('Teren: ', 'teren');
@@ -50,15 +50,11 @@ $this->section('content');
               echo form_input('datum', '','', 'datetime-local');
               echo '<br><br>';
               
-              echo "<div class='d-grid col-6 mx-auto'>";                
-                
+              echo "<div class='d-grid col-6 mx-auto'>";              
             
               echo form_submit('rezervisi', 'Rezerviši termin', ['class'=> 'btn btn-primary']);
               echo "</div>";
               echo form_close();
-              
-
-
       ?>
       </div>
 </div>

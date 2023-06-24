@@ -36,25 +36,6 @@ class Coach extends User
         
     }
 
-    public function pregledGrupa()
-    {
-        $grupaModel = new GrupaModel();        
-                
-        $grupe = $grupaModel        
-        ->where("trener_idkor", session('user')->idkor)
-        ->orderby("idgru desc") // sortiramo po idgrupe opadajuce da bi poslednje kreirane bile na pocetku
-        ->findAll();
-
-        $korisnikModel = new UserModel();
-        $clanoviGrupe = $korisnikModel
-        ->join('clan', 'korisnik.idkor = clan.ucenik_idkor')
-        ->where("clan.ucenik_idkor = korisnik.idkor")        
-        ->findAll();
-
-        return view("trener/grupe", ["clanoviGrupe" => $clanoviGrupe, "grupe" => $grupe]);         
-        
-    }
-
     public function rezervisanjeTermina()
     {
         $terenModel = new CourtModel();

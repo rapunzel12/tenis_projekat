@@ -17,7 +17,7 @@
             <a href="<?= base_url('Coach/pregledRezervacija') ?>" class="btn btn-outline-info mb-3 p-3">Zakazani individualni termini - pregled <span class="badge rounded-pill text-bg-info"><?= $ukupnoRezervacija ?></span></a></a>
         </div>
         <div class="col-sm-12 col-md-6 d-grid gap-2">
-            <a href="<?= base_url('coach/pregledGrupa') ?>" class="btn btn-outline-secondary mb-3 p-3">Grupe - pregled <span class="badge rounded-pill text-bg-secondary"><?= $ukupnoGrupa ?></span></a>
+            <a href="<?= base_url('grupa/pregledGrupa') ?>" class="btn btn-outline-secondary mb-3 p-3">Grupe - pregled <span class="badge rounded-pill text-bg-secondary"><?= $ukupnoGrupa ?></span></a>
             <a href="<?= base_url('grupa/kreiranjeGrupe') ?>" class="btn btn-outline-secondary mb-3 p-3">Grupe - kreiranje</a>
             <a href="<?= base_url('Coach/pregledTerena') ?>" class="btn btn-outline-success mb-3 p-3">Svi tereni - pregled</a>
             <a href="<?= base_url('Coach/pregledTrenera') ?>" class="btn btn-outline-success mb-3 p-3">Svi treneri - pregled</a>

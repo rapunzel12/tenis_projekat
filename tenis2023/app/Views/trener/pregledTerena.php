@@ -26,8 +26,7 @@ $this->section('content');
                         case 'B':
                             echo "Beton";
                             break;
-                    }
-                    
+                    }                    
                     
                     echo "<p class='text-secondary'>".$teren->opis . "</p>";                    
                     
