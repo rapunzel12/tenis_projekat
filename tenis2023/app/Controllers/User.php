@@ -30,7 +30,7 @@ class User extends Main
             $reservations = $rezervacijaModal->get_all_data($id);
 
             $zahtev = new ZahtevModel();
-            $coachAccepted = $zahtev->where('status', 'rez')->get();
+            $coachAccepted = $zahtev->where('status', 'slo')->get();
             if ($coachAccepted->getNumRows() > 0) {
 
                 $coachAccepted = $coachAccepted->getResult();

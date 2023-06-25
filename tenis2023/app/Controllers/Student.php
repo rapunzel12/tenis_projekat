@@ -27,7 +27,7 @@ class Student extends User
         
         $reservations = $rezervacijaModal->get_all_data($id);
 
-        $coachAccepted = $zahtev->where('status', 'rez')->get();
+        $coachAccepted = $zahtev->where('status', 'slo')->get();
         if ($coachAccepted->getNumRows() > 0) {
             
             $coachAccepted = $coachAccepted->getResult();
