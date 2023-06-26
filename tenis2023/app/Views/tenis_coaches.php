@@ -15,9 +15,9 @@ helper('html');
         </div>
         <div class="row">
             <?php
-                
+                $trenerTip = ['Glavni trener', 'Pomoćni trener', 'Trener'];
                 if (!empty($treneri)){
-                foreach ($treneri as $trener) {
+                foreach ($treneri as $index => $trener) {
                     echo "<div class='col-lg-4 col-sm-6 mb-4'>
                         <div class='portfolio-item'>
                             <a class='portfolio-link' data-bs-toggle='modal' href='#portfolioModal".$trener->idkor."'>
@@ -28,7 +28,7 @@ helper('html');
                             </a>
                             <div class='portfolio-caption'>
                                 <div class='portfolio-caption-heading'>".$trener->ime." ".$trener->prezime."</div>
-                                <div class='portfolio-caption-subheading text-muted'>trener</div>
+                                <div class='portfolio-caption-subheading text-muted'>".$trenerTip[$index]."</div>
                             </div>
                         </div>
                     </div>
@@ -43,7 +43,7 @@ helper('html');
                                             <div class='modal-body'>
                                                 <!-- Project details-->
                                                 <h2 class='text-uppercase'>".$trener->ime.' '.$trener->prezime."</h2>
-                                                <p class='item-intro text-muted'>Trener</p>
+                                                <p class='item-intro text-muted'>".$trenerTip[$index]."</p>
                                                 <img class='img-fluid d-block mx-auto' src='".base_url('assets/img/users/'.$trener->poster)."' alt='...' />
                                                 <p>".$trener->opis."</p>
                                                 <ul class='list-inline'>
