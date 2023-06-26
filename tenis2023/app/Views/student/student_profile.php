@@ -16,7 +16,7 @@ $this->section('content');
       <?php if ($personalCoach == null) {
         echo "";
       } else { ?>
-        <h3>Informacije o treneru</h3>
+        <h3>Informacije o izabranom treneru</h3>
         <div class="profile-heading">
           <img src="<?= base_url("assets/img/users/{$_SESSION['user']->poster}") ?>" alt="User Picture" class="profile-picture">
           <h5 class="profile-name"><?php echo $personalCoach->korime; ?></h5>
@@ -30,7 +30,7 @@ $this->section('content');
   <div>
     <form class="d-flex" action="<?= site_url("Student/reserveCoach") ?>" method="POST">
       <div class="form-group">
-        <label for="trener">Trener:</label>
+        <label for="trener">Treneri:</label>
         <select class="form-control" id="trener" name="trener">
           <?php
           foreach ($treneri as $trener) { ?>
