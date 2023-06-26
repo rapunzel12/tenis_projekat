@@ -20,10 +20,11 @@ class User extends Main
         if ($user->tip == 0) {
 
 
-            return view('member/member_profile', ['name' => $name, 'user' => $user]);
+            return view('member/member_profile', ['name'=> $name, 'user'=>$user]);
+
         }
-        if ($user->tip == 1) {
-            $rezervacijaModal = new RezervacijaModel();
+        if($user->tip == 1) {
+            $rezervacijaModal = new RezervacijaModel(); 
             $treneri = $rezervacijaModal->getCoaches();
 
             $id = session('user')->idkor;
@@ -37,19 +38,18 @@ class User extends Main
                 $coach = $coachAccepted[0]->trener_idkor;
                 $trenerModel = new UserModel();
                 $trener = $trenerModel
-                    ->join('trener', 'korisnik.idkor = trener.idkor')
-                    ->find($coach);
+                ->join('trener', 'korisnik.idkor = trener.idkor')
+                ->find($coach);
             } else {
                 $trener = null;
             }
 
             return view('student/student_profile', [
-                'name' => $name,
-                'user' => $user,
-                'treneri' => $treneri,
-                'personalCoach' => $trener,
-                'reservations' => $reservations
-            ]);
+                'name'=> $name, 
+                'user'=>$user, 
+                'treneri'=>$treneri,
+                'personalCoach'=>$trener,
+                'reservations'=> $reservations]);
         }
         if ($user->tip == 2) {
             // brojaci na trener meni stranici

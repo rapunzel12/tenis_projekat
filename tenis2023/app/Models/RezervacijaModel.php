@@ -19,9 +19,6 @@ class RezervacijaModel extends Model
         $builder = $this->db->table('rezervacija');
         $builder->select('rezervacija.*, teren.*, trener.* , termin.*');
         $builder->where('korisnik_idkor',$id);
-        // Otprilike ovako ce izgledati query kada promenite bazu,
-        // ako umesto korisnik_idkor dodje idkor,
-        // $builder->where('idkor',$id); 
         $builder->join('teren', 'teren.idteren = rezervacija.idteren');
         $builder->join('trener', 'trener.idkor = rezervacija.trener_idkor');
         $builder->join('termin', 'termin.idtermin = rezervacija.idtermin');
@@ -37,6 +34,14 @@ class RezervacijaModel extends Model
         
         return $data;
     }
+    public function getCourtId($type){
+        $builder = $this->db->table('teren');
+        $builder->where('tippod',$type);
+        $query = $builder->get();
+        $data = $query->getResult();
+        
+        return $data;
+    }
     public function getCoaches(){
         $builder = $this->db->table('trener');
         $query = $builder->get();
@@ -44,7 +49,34 @@ class RezervacijaModel extends Model
         
         return $data;
     }
-
+    public function getAllTerms(){
+        $builder = $this->db->table('rezervacija');
+        $builder->select('rezervacija.*, termin.vreme AS vreme,termin.datum as datum');
+        $builder->join('termin', 'rezervacija.idtermin = termin.idtermin', 'inner');
+        $builder->orderBy('vreme', 'asc');
+        $query = $builder->get();
+        $data = $query->getResult();
+        
+        return $data;
+    }
+    public function searchReservations($id,$searchInput){
+        $builder = $this->db->table('rezervacija');
+        $builder->select('rezervacija.*, teren.*, trener.* , termin.*');
+        $builder->where('rezervacija.korisnik_idkor',$id);
+        $builder->join('teren', 'teren.idteren = rezervacija.idteren');
+        $builder->join('trener', 'trener.idkor = rezervacija.trener_idkor');
+        $builder->join('termin', 'termin.idtermin = rezervacija.idtermin');
+        $builder->groupStart(); // Start grouping the OR conditions
+        $builder->like('poster_vertical', $searchInput);
+        $builder->orLike('termin.datum', $searchInput);
+        $builder->orLike('termin.vreme', $searchInput);
+        $builder->orLike('trener.opis', $searchInput);
+        $builder->orLike('rezervacija.status', $searchInput);
+        $builder->groupEnd(); // End grouping the OR conditions
+        $query = $builder->get();
+        
+        return $query->getResult();
+    }
 }
 
 

@@ -16,8 +16,8 @@ $this->section('content');
          </p>
        </div>
        <div class="profile-actions">
-         <a href="http://localhost:8080/index.php/Rezervacija" class="btn btn-primary profile-button me-2">REZERVACIJA TERENA</a>
-         <a href="http://localhost:8080/index.php/Rezervacija/pregled" class="btn btn-secondary profile-button">PREGLED REZERVACIJE</a>
+         <a href="http://localhost:8080/index.php/Reservation/create" class="btn btn-primary profile-button me-2">REZERVACIJA TERENA</a>
+         <a href="http://localhost:8080/index.php/Reservation/index" class="btn btn-secondary profile-button">PREGLED REZERVACIJE</a>
        </div>
     </div>
     </div>
