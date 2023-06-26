@@ -47,7 +47,7 @@ class Zahtevi extends User
     {        
         $rezervacijaModel = new RezervacijaModel();        
         $zahteviRekreativaca = $rezervacijaModel
-        ->select('idrez, rezervacija.idteren, rezervacija.idtermin, rezervacija.status, brrek, cena, korisnik_idkor, trener_idkor, termin.idtermin, datum, vreme, ime, prezime, brtel, tippod, opis, korisnik.tip')
+        ->select('idrez, rezervacija.idteren, rezervacija.idtermin, rezervacija.status, brrek, cena, korisnik_idkor, trener_idkor, termin.idtermin, datum, vreme, ime, prezime, brtel, tippod, opis, korisnik.tip, korisnik.poster')
         ->join('termin', 'rezervacija.idtermin = termin.idtermin')
         ->join('korisnik', 'rezervacija.korisnik_idkor = korisnik.idkor')
         ->join('teren', 'rezervacija.idteren = teren.idteren')
