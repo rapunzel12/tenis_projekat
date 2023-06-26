@@ -25,7 +25,7 @@ $this->section('content');
                 }
                 ?>
                 <li>
-                    <div class="timeline-image"><img class="mx-auto rounded-circle" src="<?= base_url('assets/img/tenis/' . $court->poster_vertical) ?>" width="157" height="157" alt="..."></div>
+                    <div class="timeline-image"><img class="img-fluid rounded-circle" src="<?= base_url('assets/img/tenis/' . $court->poster_vertical) ?>"  alt="..."></div>
                     <div class="timeline-panel" id="<?= $courtN ?>">
                         <div class="timeline-heading">
                             <h4><?php

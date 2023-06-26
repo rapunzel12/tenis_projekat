@@ -70,7 +70,7 @@ $this->section('content');
           echo "table-success";
           // }else if($rezervacija->status == 'slo'){
           //     echo "table-primary";
-        } else if ($rezervacija->status == 'otk') {
+        } elseif ($rezervacija->status == 'otk') {
           echo "table-danger";
         }
       ?>">
