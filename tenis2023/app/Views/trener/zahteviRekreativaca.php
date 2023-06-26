@@ -1,6 +1,7 @@
 <?php
     $this->extend('layout');
     $this->section('content');
+    helper('html');
 ?>
 
 <section class="page-section">
@@ -54,8 +55,9 @@
                 if (isset($_GET['status']) and !empty($_GET['status']) and $zahtev->status != $_GET['status']) continue;
                     echo "<tr>";
                     echo "<td>".$zahtev->datum."</td>";
-                    echo "<td>".$zahtev->vreme."</td>";    
-                    echo "<td>".$zahtev->ime." ".$zahtev->prezime."</td>";                
+                    echo "<td>".$zahtev->vreme."</td>"; 
+                       
+                    echo "<td>".img('assets/img/users/'.$zahtev->poster, false, ['width' => '40', 'class' => 'center img-fluid']).$zahtev->ime." ".$zahtev->prezime."</td>";                
                     echo "<td class='text-center'>".$zahtev->brrek."</td>";
                     echo "<td class='text-center'>".$zahtev->cena."</td>";
                     switch ($zahtev->tippod) {
