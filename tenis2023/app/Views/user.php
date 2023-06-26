@@ -1,4 +1,4 @@
 <?php 
-// $this->renderSection('user');?>
+// ostje nepounjen view, koji se moze koristiti u buducnosti
+?>
 
-<!-- Dobrodošli, < ?= $name; ?> -->

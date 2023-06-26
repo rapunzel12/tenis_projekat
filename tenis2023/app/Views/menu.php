@@ -8,8 +8,8 @@
 <li class="nav-item"><?= anchor("Main/viewAdmins", "Administratori", ["class"=>"nav-link"] ) ?></li>
 
 <?php if(!session()->has('user')) { ?>
-<li class="nav-item"><?= anchor("Guest/showRegistration", "Registracija", ["class"=>"nav-link"] ) ?></li>
-<li class="nav-item"><?= anchor("Guest/viewLogin", "Log in", ["class"=>"nav-link"] ) ?></li>
+<li class="nav-item"><?= anchor("Guest/showRegistration", "Registruj se", ["class"=>"nav-link"] ) ?></li>
+<li class="nav-item"><?= anchor("Guest/viewLogin", "Uloguj se", ["class"=>"nav-link"] ) ?></li>
 
 <?php } else { ?>
 

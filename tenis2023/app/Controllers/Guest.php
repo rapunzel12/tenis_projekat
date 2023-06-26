@@ -17,6 +17,7 @@ class Guest extends Main
     public function showRegistration(){
         return view('register');
     }
+    
     public function register()
     {
         if(!$this->validate([
@@ -34,11 +35,10 @@ class Guest extends Main
                 'mime_in[poster,image/png,image/jpeg, image/jpg]'
             ],
         ])){
-            return redirect()->back()->withInput() // cuvaju se svi inputi koji su vec uneti
+            return redirect()->back()->withInput() 
                 ->with('errors', $this->validator->listErrors('list'));
         }
-        // pozvati funkciju trim od sting
-        // 
+        
 
         $user = [
             'ime' =>$this->request->getPost('name'),
@@ -142,7 +142,7 @@ class Guest extends Main
         $this->session->set('user', $user);  // prvi user je sacuvan u sesiji, na to se odnosi 'user'
         
         if($user->tip == 0) {
-        
+            // return redirect()->to('Member'); 
             return redirect()->to('User/index'); 
         }
         if($user->tip == 1) {

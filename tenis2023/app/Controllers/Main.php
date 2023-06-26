@@ -19,14 +19,14 @@ class Main extends BaseController
     public function viewTenisCourts(){
         return view('tenis_courts');
     }
+
     public function viewTenisCourtsTypes(){
 
         $courtModel = new CourtModel();
-
         $courts = $courtModel->findAll();
-
         return view('tenis_courts_types', ['courts'=>$courts]);
     }
+    
     public function viewTenisCoaches(){
 
         $trenerModel = new CoachModel();                

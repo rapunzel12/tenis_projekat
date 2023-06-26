@@ -1,9 +1,6 @@
 <?php
-
 $this->extend('layout');
-
 $this->section('content');
-
 ?>
 
 <div class="masthead container">
@@ -29,8 +26,6 @@ $this->section('content');
                     <option value="1" <?= set_select('status', '1') ?>>prihvaćen</option>
                     <option value="2" <?= set_select('status', '2') ?>>odbijen</option>
                     <option value="3" <?= set_select('status', '3') ?>>arhiviran</option>
-
-                    <option value="4" <?= set_select('status', '4') ?>>svi korisnici</option>
                 </select>
                 <br>
 
@@ -43,8 +38,6 @@ $this->section('content');
 
     </div>
 </div>
-
-
 
 <?php
 $this->endSection();

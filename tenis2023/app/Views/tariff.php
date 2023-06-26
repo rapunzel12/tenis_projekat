@@ -1,10 +1,8 @@
 <!-- PREGLED CENOVNIKA KOJI SE PRIKAZUJE SVAKOM POSETIOCU SAJTA-->
 <?php
-
 $this->extend('layout');
 $this->section('content');
 ?>
-
 
 <div class="masthead container">
     <div class="row">
@@ -12,16 +10,10 @@ $this->section('content');
             <br>
             <br>
             <br>
-
             <br>
             <h2 class="section-heading text-uppercase">Cenovnik kluba</h2>
             <br>
-
-
-            <?php if (isset($tariffs)) {
-
-
-            ?>
+            <?php if (isset($tariffs)) { ?>
                 <div>
                     <table class="table table-hover table-striped table-bordered" border="1" cellpadding="2" cellspacing="1">
                         <tr>
@@ -41,36 +33,16 @@ $this->section('content');
                                 <td><?= $tariff->ukupno . ",00 RSD" ?></td>
                             </tr>
 
-                        <?php
-                        }
-                        ?>
-
+                        <?php } ?>
                     </table>
-                <?php
-            }
-
-                ?>
+                <?php } ?>
                 </div>
-
                 <br>
                 <br>
                 <br>
         </div>
     </div>
-
-
 </div>
-
-
-
-
-
-
-
-
-
-
-
 <?php
 $this->endSection();
 ?>

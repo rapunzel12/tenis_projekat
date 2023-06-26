@@ -1,9 +1,6 @@
 <?php
-
 $this->extend('layout');
-
 $this->section('content');
-
 ?>
 
 <div class="masthead container">
@@ -25,8 +22,6 @@ $this->section('content');
                 <label for="court_type" class="form-label">Tip podloge:</label>
                 <select class="form-select" name="court_type">
                     <option selected disabled hidden value="">Izaberite...</option>
-
-
                     <option value="S" <?= set_select('court_type', 'S') ?>>šljaka</option>
                     <option value="T" <?= set_select('court_type', 'T') ?>>trava</option>
                     <option value="B" <?= set_select('court_type', 'B') ?>>beton</option>
@@ -40,10 +35,7 @@ $this->section('content');
             </form>
         </div>
     </div>
-
-
 </div>
-
 <?php
 $this->endSection();
 ?>

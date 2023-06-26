@@ -18,13 +18,9 @@ class TariffModel extends Model
 
     public function getTariffs($total) 
     {
-        $builder = $this->builder();
         if(isset($total))
-            $builder->where('naziv', $total);
-            $builder->select('naziv, ukupno');
-        return $builder->get()->getResultArray();
+            return $this->where('naziv', $total)->get()->getResultArray();
     }
 	
-   
 }
 

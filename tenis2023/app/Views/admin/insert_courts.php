@@ -1,11 +1,7 @@
 <?php
-
 $this->extend('layout');
-
 $this->section('content');
-
 ?>
-
 
 <div class="masthead container">
     <div class="row">
@@ -51,6 +47,6 @@ $this->section('content');
     </div>
 </div>
 
-        <?php
-        $this->endSection();
-        ?>
+<?php
+$this->endSection();
+?>

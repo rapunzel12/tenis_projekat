@@ -18,7 +18,8 @@ $this->section('content');
             <h4><?= $session->getFlashdata('msg') ?></h4>
             <h4><?= $session->getFlashdata('errors') ?></h4>
             <br>
-            <?php if (isset($courts)) {
+            <?php
+            if (isset($courts)) {
                 //if (count($courts) == 0) {
                 if (sizeof($courts) == 0) {
                     echo "<h4>";
@@ -59,17 +60,11 @@ $this->section('content');
                                 </td>
                             </tr>
 
-                        <?php
-
-                        }
-                        ?>
+                        <?php } ?>
 
                     </table>
-                <?php
-            }
-                ?>
+                <?php } ?>
                 </div>
-
                 <br>
                 <br>
                 <br>

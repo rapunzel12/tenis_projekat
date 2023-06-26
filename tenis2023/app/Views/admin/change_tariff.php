@@ -1,10 +1,8 @@
 <!-- PREGLED CENOVNIKA KOJI ADMIN MOZE DA UPDATE-UJE i brise-->
 <?php
-
 $this->extend('layout');
 $this->section('content');
 ?>
-
 
 <div class="masthead container">
     <div class="row">
@@ -60,17 +58,6 @@ $this->section('content');
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
 <?php
 $this->endSection();
 ?>

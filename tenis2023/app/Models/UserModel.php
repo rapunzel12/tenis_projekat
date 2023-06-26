@@ -17,10 +17,7 @@ class UserModel extends Model
 
     public function getUsers($status)
     {
-        // $builder = $this->builder(); // visak
         if (isset($status) && $status != 4)
-            return $this->where('status', $status)->get()->getResultArray();
-        // $builder->select('idkor, korime, pass, ime, prezime, brtel, email, status, tip');
-
+            return $this->where('status', $status)->get()->getResultArray();   
     }
 }

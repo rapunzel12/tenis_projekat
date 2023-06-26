@@ -25,7 +25,7 @@ class Admin extends User
         return view('admin/show_user_status', ['users'=>$users]);
     }
 
-    // RADI KADA SE ISKLJUCI JAVASCRIPT
+    // Radi kada se iskljuci Javascript u layout.php
     public function updateUser($idkor, $status)
     {
         $userModel = new UserModel();
@@ -94,7 +94,7 @@ class Admin extends User
         return view ('admin/show_courts', ['courts'=>$courts]);
     }
 
-    // RADI KADA SE ISKLJUCI JAVASCRIPT
+    // Radi kada se iskljuci Javascript u layout.php
     public function deleteCourts($idteren)
     {
         $courtModel =  new CourtModel();
