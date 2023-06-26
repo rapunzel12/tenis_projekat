@@ -11851,7 +11851,7 @@ section#contact form#contactForm :-ms-input-placeholder {
   transition: 1.5s ease;
 }
 .card:hover .card-body {
-  height: 80%;
+  height: 70%;
 }
 .card:hover .card-content {
   bottom: 0;
@@ -11895,3 +11895,16 @@ body {
   margin: 0;
   /*background-image: linear-gradient(to right, #ECE9E6 , #FFFFFF);*/ /* bude krem-zuta boja pozadina, da li staviti?*/
 }
+
+.btn-primary{
+  background-color: var(--bs-yellow) !important;
+  border-color: var(--bs-yellow) !important;
+  box-shadow: none !important;
+}
+
+.btn-primary:active, .btn-primary:hover{
+  background-color: var(--bs-yellow) !important;
+  border-color: var(--bs-yellow) !important;
+  box-shadow: none !important;
+}
+

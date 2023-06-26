@@ -14,4 +14,7 @@ class StudentModel extends Model
     protected $returnType     = 'object';
 
     protected $allowedFields = ['idkor'];
+
+   
 }
+
