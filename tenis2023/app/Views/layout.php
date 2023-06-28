@@ -8,8 +8,8 @@
     <meta name="author" content="" />
     <title>Tenis</title>
     <!-- Favicon-->
-    <!-- <link rel="icon" type="Tenis" href="assets/img/Logo.jpg" /> --> <!-- GRESKA JE U OVOJ LINIJI -->
-    <!-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico" /> --> <!-- originalna linija iz bootstrap teme -->
+    <!-- <link rel="icon" type="img/x-icon" href="assets/img/Logo.jpg" /> --> <!-- ova linija sprecava izvrsenje serverskog dela koda kada je otkomentarisana -->
+    
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
